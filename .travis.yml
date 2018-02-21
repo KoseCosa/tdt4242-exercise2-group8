@@ -2,7 +2,8 @@ sudo: required
 dist: trusty
 language: node_js
 node_js: stable
-
+services:
+  - docker
 branches:
   only:
   - master
@@ -52,7 +53,13 @@ jobs:
 
       script:
       - ng build --prod --aot
+      - mv Dockerfile ./dist/Dockerfile
+      - cd dist
+      - docker build -t my-angular-app .
+      - docker run -p 80:80 -d my-angular-app
 
       after_success:
       - firebase use production
       - firebase deploy --token $FIREBASE_TOKEN
+      - docker login -u atean -p WXg9@O*LB@0xG%6d
+      - docker push atean/tdt4242-app
