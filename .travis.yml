@@ -49,7 +49,7 @@ jobs:
       after_success:
       - firebase use staging
       - firebase deploy --token $FIREBASE_TOKEN
-      - docker login -u $DOCKER_USERNAME --password-stdin $DOCKER_PASSWORD
+      - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       - docker push atean/tdt4242-app
 
     - stage: deploy to production
