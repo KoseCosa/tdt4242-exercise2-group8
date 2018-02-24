@@ -1,4 +1,4 @@
-tdt4242-exercise2-group8-stagesudo: required
+sudo: required
 dist: trusty
 language: node_js
 node_js: stable
