@@ -1,7 +1,0 @@
-{
-  "projects": {
-    "dev": "tdt4242-exercise2-group8-dev",
-    "staging": "tdt4242-exercise2-group8-stage",
-    "production": "tdt4242-exercise2-group8-prod"
-  }
-}
