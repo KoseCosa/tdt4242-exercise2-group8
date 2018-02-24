@@ -1,4 +1,4 @@
-sudo: required
+tdt4242-exercise2-group8-stagesudo: required
 dist: trusty
 language: node_js
 node_js: stable
@@ -11,13 +11,14 @@ cache:
   directories:
   - node_modules
 
+services:
+  - docker
+
 stages:
   - name: unit testing
-    if: type = pull_request
-  - name: deploy to staging
-    if: type = pull_request
-  - name: deploy to production
-    if: type = push
+    if: (type = pull_request) AND (branch = master)
+  - name: deploy to stage
+    if: (type = push) AND (branch = master)
 
 jobs:
   include:
@@ -29,30 +30,19 @@ jobs:
 
       before_script:
       - npm install -g angular-cli
-      - yarn
+      - npm install
 
       script: ng test --single-run
 
-    - stage: deploy to staging
+    - stage: deploy to stage
       before_script:
-      - npm install -g firebase-tools
-      - npm install -g @angular/cli
+      - npm run build --aot
+      - cd server
+      - npm install
+      - cd ..
 
       script:
-      - ng build --prod --aot
-
-      after_success:
-      - firebase use staging
-      - firebase deploy --token $FIREBASE_TOKEN
-
-    - stage: deploy to production
-      before_script:
-      - npm install -g firebase-tools
-      - npm install -g @angular/cli
-
-      script:
-      - ng build --prod --aot
-
-      after_success:
-      - firebase use production
-      - firebase deploy --token $FIREBASE_TOKEN
+      - docker build -t tdt4242-exercise2-group8-stage .
+      - docker tag tdt4242-exercise2-group8-stage:latest registry.heroku.com/tdt4242-exercise2-group8-stage/web
+      - docker login --username=_ --password=$HEROKU_AUTH_TOKEN registry.heroku.com
+      - docker push registry.heroku.com/tdt4242-exercise2-group8-stage/web
