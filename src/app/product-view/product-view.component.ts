@@ -12,7 +12,6 @@ export class ProductViewComponent implements OnInit {
 
     products: Product[];
 
-
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
@@ -23,5 +22,4 @@ export class ProductViewComponent implements OnInit {
     this.productService.getProducts()
       .subscribe(products => this.products = products)
   }
-
 }
