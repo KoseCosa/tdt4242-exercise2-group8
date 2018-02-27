@@ -7,7 +7,7 @@ router.get('/', function(req,res){
 });
 
 router.get('/:id', function(req,res){
-  res.send('This should return the produt with id: '+req.params.id);
+  res.send('This should return the product with id: '+req.params.id);
 });
 
 router.post('/', function(req,res){
@@ -15,9 +15,11 @@ router.post('/', function(req,res){
 });
 
 router.put('/:id', function(req,res){
-  res.send('This should return the produt with id: '+req.params.id);
+  res.send('This should update the product with id: '+req.params.id);
 });
 
-router.delete()
+router.delete('/:id', function(req,res){
+  res.send('This should delete the product with id: '+req.params.id);
+});
 
 module.exports = router
