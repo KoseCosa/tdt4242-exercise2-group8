@@ -16,6 +16,11 @@ const apiRouter = require('./routes/api.js');
 // Other Routes
 server.use(express.static(__dirname + '/../dist')); // Static Folder
 
+// Send other routes to Angular
+server.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '/../dist/index.html'));
+  });
+
 server.use('/api',apiRouter);
 // Start Listening
 server.listen(port, () => console.log('Server listening on port '+port+'!'));
