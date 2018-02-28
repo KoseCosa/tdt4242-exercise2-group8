@@ -11,7 +11,7 @@
   <div style="display:flex;" *ngFor="let product of cart">
     <div style="margin-right:auto">{{ product.name }}<br>In storage: {{ product.amount }}</div>
     <div>{{ product.price | number : '1.2-2'}}</div>
-    <div style="margin-left:20px" (click)="removeProduct(product)">Delete</div>
+    <div style="margin-left:20px; text-decoration: underline; cursor: pointer;" (click)="removeProduct(product)">Delete</div>
   </div>
   <hr>
   <div style="display:flex;">
