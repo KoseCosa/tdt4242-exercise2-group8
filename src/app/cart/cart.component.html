@@ -13,6 +13,7 @@
     <div>{{ product.price | number : '1.2-2'}}</div>
     <div style="margin-left:20px; text-decoration: underline; cursor: pointer;" (click)="removeProduct(product)">Delete</div>
   </div>
+  <div *ngIf="cart.length < 1">No products in cart</div>
   <hr>
   <div style="display:flex;">
     <div style="margin-left:auto">Total Sum: {{ getTotalSum() | number : '1.2-2' }}</div>
