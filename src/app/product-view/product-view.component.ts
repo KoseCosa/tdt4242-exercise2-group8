@@ -5,6 +5,7 @@ import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-product-view',
+  providers: [ ProductService ],
   templateUrl: './product-view.component.html',
   styleUrls: ['./product-view.component.css']
 })
