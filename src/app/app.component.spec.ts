@@ -2,6 +2,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { AdminAddProductComponent } from './admin-add-product/admin-add-product.component';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+import { CartComponent } from './cart/cart.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
