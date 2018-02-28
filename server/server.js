@@ -10,15 +10,16 @@ const dbURI = process.env.MONGODB_URI || 'mongodb://heroku_3msqfcw6:t562gfc8t8s3
 const mongodb = mongoose.connect(dbURI);
 const port = process.env.PORT || 4300
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist/index.html'));
-  });
-
 // Routers
 const apiRouter = require('./routes/api.js');
 
 // Other Routes
 server.use(express.static(__dirname + '/../dist')); // Static Folder
+
+// Send other routes to Angular
+server.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '/../dist/index.html'));
+  });
 
 server.use('/api',apiRouter);
 // Start Listening
