@@ -8,7 +8,8 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        AdminAddProductComponent
+        AdminAddProductComponent,
+        CartComponent
       ],
       imports: [
         FormsModule
