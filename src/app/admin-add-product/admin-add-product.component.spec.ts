@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdminAddProductComponent } from './admin-add-product.component';
+import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 
 describe('AdminAddProductComponent', () => {
   let component: AdminAddProductComponent;
@@ -8,7 +9,8 @@ describe('AdminAddProductComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdminAddProductComponent ]
+      declarations: [ AdminAddProductComponent ],
+      imports: [ FormsModule ]
     })
     .compileComponents();
   }));

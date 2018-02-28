@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../product';
-import { PRODUCTS } from '../mock-products';
 
 @Component({
   selector: 'app-admin-add-product',
@@ -14,9 +12,9 @@ export class AdminAddProductComponent implements OnInit {
   ngOnInit() {
   }
 
-  selectedProduct: Product;
+  selectedProduct: Object;
 
-  onSelect(product: Product): void {
+  onSelect(product: Object): void {
     this.selectedProduct = product;
   }
 
@@ -24,7 +22,7 @@ export class AdminAddProductComponent implements OnInit {
     this.products.push({id:this.products.length+1,name:productName});
   }
 
-  products: Product[] = [
+  products: Object[] = [
     { id: 1, name: 'Product1' },
     { id: 2, name: 'Product2' },
     { id: 3, name: 'Product3' },
