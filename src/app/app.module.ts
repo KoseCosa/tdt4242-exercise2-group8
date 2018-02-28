@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ProductViewComponent } from './product-view/product-view.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductService } from './product.service';
+import { CartComponent } from './cart/cart.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { ProductGridViewComponent } from './product-grid-view/product-grid-view.component';
@@ -16,6 +17,7 @@ import { ProductGridViewComponent } from './product-grid-view/product-grid-view.
     ProductViewComponent,
     ProductDetailComponent,
     ProductGridViewComponent
+    CartComponent
   ],
   imports: [
     BrowserModule,
