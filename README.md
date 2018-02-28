@@ -1,4 +1,30 @@
-# Tdt4242Exercise2Group8
+# Tdt4242 Exercise2 Group8
+
+DevOps on a Budge
+
+## Important about packages
+The server and the angular app has seperate package.json files this is to keep the artifacts from holding any source code.
+* When installing packages to the angular app make sure you are in the root folder.
+* When installing packages to the server make sure you are in the server folder.
+
+## How to Pipeline
+
+1. Create your own branch
+2. Make awesome code
+3. Pull master if needed
+4. Push to your own remote branch
+5. Make a pull request with master as base and your branch as compare
+   * Travis will run the unit tests
+6. If the unit tests succeed merge with master if not fix your branch
+   * Travis will create a docker image and push it to staging
+   * Staging URL: https://tdt4242-exercise2-group8-stage.herokuapp.com/
+7. Make sure everything is fine in staging
+   * If something went wrong fix your branch and try again
+8. Poke Clas with a stick until he promotes staging to production (Temporary Solution)
+   * If something went wrong you can roll back production in heroku
+   * Production URL: https://tdt4242-exercise2-group8-prod.herokuapp.com/
+
+# Angular Information
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
 

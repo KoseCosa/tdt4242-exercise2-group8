@@ -1,9 +1,16 @@
 <!--The content below is only a placeholder and can be replaced.-->
-
-
-<div class="header" style="text-align:center">
-    <h1>
-      Welcome to {{ title }}!
-    </h1>
-    <app-registration></app-registration>
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+  <app-admin-add-product></app-admin-add-product>
 </div>
+
+<nav>
+  <a routerLink="/list-products">List view</a>
+  <a routerLink="/grid-products">Grid view</a>
+</nav>
+
+<router-outlet></router-outlet>
+<app-cart></app-cart>
+<app-registration></app-registration>
