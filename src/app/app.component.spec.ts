@@ -4,6 +4,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AdminAddProductComponent } from './admin-add-product/admin-add-product.component';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { CartComponent } from './cart/cart.component';
+import { RegistrationComponent } from './registration/registration.component';
+
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -11,7 +13,8 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         AdminAddProductComponent,
-        CartComponent
+        CartComponent,
+        RegistrationComponent
       ],
       imports: [
         FormsModule,
