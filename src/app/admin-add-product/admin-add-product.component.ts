@@ -23,11 +23,11 @@ export class AdminAddProductComponent implements OnInit {
   }
 
   products: Object[] = [
-    { id: 1, name: 'Product1' },
-    { id: 2, name: 'Product2' },
-    { id: 3, name: 'Product3' },
-    { id: 4, name: 'Product4' },
-    { id: 5, name: 'Product5' },
-    { id: 6, name: 'Product6' },
+    { id: 1, name: 'Product 1' },
+    { id: 2, name: 'Product 2' },
+    { id: 3, name: 'Product 3' },
+    { id: 4, name: 'Product 4' },
+    { id: 5, name: 'Product 5' },
+    { id: 6, name: 'Product 6' },
   ];
 }

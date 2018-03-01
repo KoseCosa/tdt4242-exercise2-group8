@@ -10,6 +10,7 @@ import { CartComponent } from './cart/cart.component';
 import { AdminAddProductComponent } from './admin-add-product/admin-add-product.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProductGridViewComponent } from './product-grid-view/product-grid-view.component';
+import { AdminPageService } from './admin-page/admin-page.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { ProductGridViewComponent } from './product-grid-view/product-grid-view.
     FormsModule,
     AppRoutingModule
   ],
-  providers: [ProductService],
+  providers: [ProductService, AdminPageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
