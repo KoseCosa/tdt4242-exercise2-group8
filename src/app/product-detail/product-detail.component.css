@@ -1,7 +1,7 @@
 /* ProductDetailComponent's private CSS styles */
 label {
     display: inline-block;
-    width: 3em;
+    width: 10em;
     margin: .5em 0;
     color: #607D8B;
     font-weight: bold;
@@ -21,6 +21,7 @@ label {
     cursor: pointer; cursor: hand;
   }
   button:hover {
+    color: #039be5;
     background-color: #cfd8dc;
   }
   button:disabled {
