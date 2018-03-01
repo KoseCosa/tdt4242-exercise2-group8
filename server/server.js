@@ -1,6 +1,9 @@
 // Imports
 const express = require('express');
 const mongoose = require('mongoose');
+const passport = require('passport');
+const session = require('express-session')
+const RedisStore = require('connect-redis')(session)
 
 // Initialize Express Server
 const server = express();
@@ -12,6 +15,19 @@ const port = process.env.PORT || 4300
 
 // Routers
 const apiRouter = require('./routes/api.js');
+
+// Passport
+/*server.use(session({
+    store: new RedisStore({
+        url: config.redisStore.url
+    }),
+    secret: config.redisStore.secret,
+    resave: false,
+    saveUninitialized: false
+    }))
+*/    
+server.use(passport.initialize())
+server.use(passport.session())
 
 // Other Routes
 server.use(express.static(__dirname + '/../dist')); // Static Folder

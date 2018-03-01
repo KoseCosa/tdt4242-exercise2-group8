@@ -1,8 +1,11 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const User = require('../../db/models/user.js')
+const passport = require('passport')
 
 const router = express.Router();
+
+// Authentication
 
 router.use(bodyParser.json());
 
