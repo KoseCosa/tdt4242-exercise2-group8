@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
-
+import {FormsModule } from '@angular/forms';
+import { RegistrationComponent } from './registration/registration.component';
 import { AppComponent } from './app.component';
 import { ProductViewComponent } from './product-view/product-view.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
@@ -18,7 +18,9 @@ import { ProductGridViewComponent } from './product-grid-view/product-grid-view.
     ProductDetailComponent,
     ProductGridViewComponent,
     AdminAddProductComponent,
-    CartComponent
+    CartComponent,
+    RegistrationComponent
+
   ],
   imports: [
     BrowserModule,
