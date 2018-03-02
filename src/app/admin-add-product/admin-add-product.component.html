@@ -9,7 +9,7 @@
     <input #productAmount />
   </label>
   <!-- (click) passes input value to add() and then clears the input -->
-  <button (click)="add(productName.value, productAmount.value)">
+  <button (click)="add({name:productName.value, stock:productAmount.value})">
     add
   </button>
 </div>
@@ -19,15 +19,15 @@
 <ul class="products">
   <li *ngFor="let product of products" (click)="onSelect(product)">
     <div *ngIf="selectedProduct==product; else elseBlock">
-        <label>amount:
-          <input [(ngModel)]="selectedProduct.amount" placeholder="amount">
+        <label>stock:
+          <input [(ngModel)]="selectedProduct.stock" placeholder="stock">
         </label>
         <label>name:
           <input [(ngModel)]="selectedProduct.name" placeholder="name">
         </label>
     </div>
     <ng-template #elseBlock>
-      <span class="badge">{{product.amount}}</span> {{product.name}}
+      <span class="badge">{{product.stock}}</span> {{product.name}}
     </ng-template>
   </li>
 </ul>

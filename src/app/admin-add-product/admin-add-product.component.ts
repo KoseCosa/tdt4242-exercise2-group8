@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from '../models/product';
 
 @Component({
   selector: 'app-admin-add-product',
@@ -12,29 +13,26 @@ export class AdminAddProductComponent implements OnInit {
   ngOnInit() {
   }
 
-  selectedProduct: Object;
+  selectedProduct: Product;
 
-  onSelect(product: Object): void {
+  onSelect(product: Product): void {
     this.selectedProduct = product;
   }
 
-  add(productName: String, productAmount: Int) : void {
-    this.products.push({
-      id:this.products.length+1,
-      name:productName,
-      amount: productAmount});
+  add(newProduct: Product) : void {
+    this.products.push(newProduct);
   }
 
-  products: Object[] = [
-      { id: 11, name: 'Apple', amount: 10 },
-      { id: 12, name: 'Banana', amount: 20 },
-      { id: 13, name: 'Pear', amount: 30 },
-      { id: 14, name: 'Mango', amount: 40 },
-      { id: 15, name: 'Passion fruit', amount: 50 },
-      { id: 16, name: 'Grapefruit', amount: 0 },
-      { id: 17, name: 'Orange', amount: 1 },
-      { id: 18, name: 'Pineapple', amount: 2 },
-      { id: 19, name: 'Plum', amount: 3 },
-      { id: 20, name: 'Strawberry', amount: 4 },
+  products: Product[] = [
+      { id: 11, name: 'Apple', stock: 10, category: 'fruit' },
+      { id: 12, name: 'Banana', stock: 20 },
+      { id: 13, name: 'Pear', stock: 30 },
+      { id: 14, name: 'Mango', stock: 40 },
+      { id: 15, name: 'Passion fruit', stock: 50 },
+      { id: 16, name: 'Grapefruit', stock: 0 },
+      { id: 17, name: 'Orange', stock: 1 },
+      { id: 18, name: 'Pineapple', stock: 2 },
+      { id: 19, name: 'Plum', stock: 3 },
+      { id: 20, name: 'Strawberry', stock: 4 },
   ];
 }
