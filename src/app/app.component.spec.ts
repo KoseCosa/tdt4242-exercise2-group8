@@ -11,8 +11,6 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        AdminAddProductComponent,
-        CartComponent,
         NavbarComponent
       ],
       imports: [

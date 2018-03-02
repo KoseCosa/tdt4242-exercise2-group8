@@ -4,7 +4,9 @@ const ProductSchema = mongoose.Schema({
   name: String,
   price: Number,
   category: String,
-  amount: Number
+  stock: Number,
+  salePercentage: Number
+  // Add Package Deal Object
 });
 
 module.exports = mongoose.model('Product', ProductSchema);
