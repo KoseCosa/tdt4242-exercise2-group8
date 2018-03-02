@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from '../models/product';
 
 @Component({
   selector: 'app-admin-add-product',
@@ -12,22 +13,29 @@ export class AdminAddProductComponent implements OnInit {
   ngOnInit() {
   }
 
-  selectedProduct: Object;
+  selectedProduct: Product;
 
-  onSelect(product: Object): void {
+  onSelect(product: Product): void {
     this.selectedProduct = product;
   }
 
-  add(productName: String) : void {
-    this.products.push({id:this.products.length+1,name:productName});
+  add(productName: string) : void {
+    let newProduct = new Product();
+    newProduct.name = productName;
+    newProduct.stock = 10;
+    this.products.push(newProduct);
   }
 
-  products: Object[] = [
-    { id: 1, name: 'Product 1' },
-    { id: 2, name: 'Product 2' },
-    { id: 3, name: 'Product 3' },
-    { id: 4, name: 'Product 4' },
-    { id: 5, name: 'Product 5' },
-    { id: 6, name: 'Product 6' },
+  products: Product[] = [
+      // { name: 'Apple', stock: 10, category: 'fruit' },
+      // { name: 'Banana', stock: 20 },
+      // { name: 'Pear', stock: 30 },
+      // { name: 'Mango', stock: 40 },
+      // { name: 'Passion fruit', stock: 50 },
+      // { name: 'Grapefruit', stock: 0 },
+      // { name: 'Orange', stock: 1 },
+      // { name: 'Pineapple', stock: 2 },
+      // { name: 'Plum', stock: 3 },
+      // { name: 'Strawberry', stock: 4 },
   ];
 }

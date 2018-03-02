@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
-import { Product } from './product';
+import { Product } from './models/product';
 import { PRODUCTS } from './mock-products';
 
 
