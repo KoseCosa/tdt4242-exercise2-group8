@@ -1,20 +1,29 @@
 import { Injectable } from '@angular/core';
+import { Product } from '../../models/product';
 
 @Injectable()
 export class ProductService {
-  products = [
-    {id: '1', name: 'Banana', category: 'Fruit', price: 0.99, stock: 50},
-    {id: '2', name: 'Beef', category: 'Meat', price: 7.99, stock: 50},
-    {id: '3', name: 'Chocolate', category: 'Candy', price: 1.99, stock: 50},
-    {id: '4', name: 'Bread', category: 'Baking Goods', price: 3.99, stock: 50},
-    {id: '5', name: 'Soda', category: 'Beverage', price: 3.99, stock: 50}
-  ];
-  constructor() { }
+  productCounter = 0;
+  products: Product[] = [];
 
   getProducts() {
     return this.products;
   }
   getProduct(id) {
     return this.products.find(product => product.id === id);
+  }
+
+  addProduct() {
+    this.productCounter += 1;
+    const newProduct: Product = {
+      id: this.productCounter,
+      name: 'Name',
+      price: 9.90,
+      category: 'Category',
+      stock: 10,
+      salePercentage: 0,
+      packageDeal: null
+    };
+    this.products = [].concat(this.products, newProduct);
   }
 }

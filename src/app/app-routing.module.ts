@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { CartComponent } from './cart/cart.component';
-import { AdminAddProductComponent } from './admin-add-product/admin-add-product.component';
-import { ProductsComponent } from './products/products.component';
+import { CartComponent } from './components/cart/cart.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { ProductsComponent } from './components/products/products.component';
 
 const routes: Routes = [
   { path: '', component: ProductsComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'admin', component: AdminAddProductComponent },
+  { path: 'admin', component: AdminComponent },
 ];
 
 @NgModule({
