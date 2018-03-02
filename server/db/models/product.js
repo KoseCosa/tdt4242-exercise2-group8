@@ -2,7 +2,8 @@ mongoose = require('mongoose');
 
 const ProductSchema = mongoose.Schema({
   name: String,
-  price: Number, //Stored in øre not kroners
+  price: Number,
+  category: String,
   amount: Number
 });
 
