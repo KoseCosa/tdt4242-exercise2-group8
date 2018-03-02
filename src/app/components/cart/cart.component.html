@@ -2,15 +2,23 @@
   <div style="display:flex;">
     <div style="margin-right:auto">Product</div>
     <div style="display:flex">
-      <div>Price</div>
-      <div style="margin-left:20px">Delete</div>
+      <div style="width: 100px; text-align: right;">Amount</div>
+      <div style="width: 100px; text-align: right;">Price</div>
+      <div style="width: 100px; text-align: right;">Total</div>
+      <div style="width: 100px; text-align: right;">Delete</div>
     </div>
   </div>
   <hr>
   <div style="display:flex;" *ngFor="let product of cart">
-    <div style="margin-right:auto">{{ product.name }}<br>In storage: {{ product.amount }}</div>
-    <div>{{ product.price | number : '1.2-2'}}</div>
-    <div style="margin-left:20px;" (click)="removeProduct(product)"><span style="text-decoration: underline; cursor: pointer;">Delete</span></div>
+    <div style="margin-right:auto">
+      {{ product.name }} - {{ product.category }}
+      <br>
+      ProductID: {{ product.id }} Stock: {{ product.stock }}
+    </div>
+    <div style="width: 100px; text-align: right;">{{ product.amount }}</div>
+    <div style="width: 100px; text-align: right;">{{ product.price | number : '1.2-2'}}</div>
+    <div style="width: 100px; text-align: right;">{{ product.price*product.amount | number : '1.2-2'}}</div>
+    <div style="width: 100px; text-align: right;" ><span style="text-decoration: underline; cursor: pointer;" (click)="removeProduct(product)">Delete</span></div>
   </div>
   <div *ngIf="cart.length < 1">No products in cart</div>
   <hr>
