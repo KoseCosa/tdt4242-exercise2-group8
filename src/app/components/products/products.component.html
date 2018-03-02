@@ -1,0 +1,19 @@
+<div style="width: auto;">
+  <div style="display:flex;">
+    <div style="margin-right:auto">Product Description:</div>
+    <div style="display:flex">
+      <div>Price</div>
+      <div style="margin-left:20px">Add to Cart</div>
+    </div>
+  </div>
+  <hr>
+  <div style="display:flex;" *ngFor="let product of products">
+    <div style="margin-right:auto">{{ product.name }} - {{ product.category }}<br> Stock: {{ product.stock }}</div>
+    <div>{{ product.price | number : '1.2-2'}}</div>
+    <div style="margin-left:20px;">
+      <span style="text-decoration: underline; cursor: pointer;" (click)="addProduct(product)">Add to Cart</span>
+    </div>
+  </div>
+  <div *ngIf="products.length < 1">No products for sale</div>
+  <hr>
+</div>
