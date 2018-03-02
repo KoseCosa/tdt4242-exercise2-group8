@@ -28,4 +28,6 @@ export class AdminComponent implements OnInit {
     this.productService.addProduct();
     this.products = this.productService.getProducts();
   }
+  /* TODO: Look into edit product atm I think it just access the product in ProductService directly and updates that.
+  This will be a problem when we get it connected to the database since we want it to update the database aswell */
 }
