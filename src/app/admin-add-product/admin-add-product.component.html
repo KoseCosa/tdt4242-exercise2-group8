@@ -1,27 +1,33 @@
+
+
+<h2>Add New Product:</h2>
 <div>
-  <label>Product name:
+  <label>Name:
     <input #productName />
   </label>
+  <label>Amount:
+    <input #productAmount />
+  </label>
   <!-- (click) passes input value to add() and then clears the input -->
-  <button (click)="add(productName.value); productName.value=''">
+  <button (click)="add(productName.value, productAmount.value)">
     add
   </button>
 </div>
 
 
-<h2>My Products</h2>
+<h2>Edit Products:</h2>
 <ul class="products">
   <li *ngFor="let product of products" (click)="onSelect(product)">
-    <span class="badge">{{product.id}}</span> {{product.name}}
+    <div *ngIf="selectedProduct==product; else elseBlock">
+        <label>amount:
+          <input [(ngModel)]="selectedProduct.amount" placeholder="amount">
+        </label>
+        <label>name:
+          <input [(ngModel)]="selectedProduct.name" placeholder="name">
+        </label>
+    </div>
+    <ng-template #elseBlock>
+      <span class="badge">{{product.amount}}</span> {{product.name}}
+    </ng-template>
   </li>
 </ul>
-
-<div *ngIf="selectedProduct">
-  <h2>{{ selectedProduct.name }} Details</h2>
-  <div><span>id: </span>{{selectedProduct.id}}</div>
-  <div>
-    <label>name:
-      <input [(ngModel)]="selectedProduct.name" placeholder="name">
-    </label>
-  </div>
-</div>

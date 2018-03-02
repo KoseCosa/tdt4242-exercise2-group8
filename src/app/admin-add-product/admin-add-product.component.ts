@@ -18,16 +18,23 @@ export class AdminAddProductComponent implements OnInit {
     this.selectedProduct = product;
   }
 
-  add(productName: String) : void {
-    this.products.push({id:this.products.length+1,name:productName});
+  add(productName: String, productAmount: Int) : void {
+    this.products.push({
+      id:this.products.length+1,
+      name:productName,
+      amount: productAmount});
   }
 
   products: Object[] = [
-    { id: 1, name: 'Product 1' },
-    { id: 2, name: 'Product 2' },
-    { id: 3, name: 'Product 3' },
-    { id: 4, name: 'Product 4' },
-    { id: 5, name: 'Product 5' },
-    { id: 6, name: 'Product 6' },
+      { id: 11, name: 'Apple', amount: 10 },
+      { id: 12, name: 'Banana', amount: 20 },
+      { id: 13, name: 'Pear', amount: 30 },
+      { id: 14, name: 'Mango', amount: 40 },
+      { id: 15, name: 'Passion fruit', amount: 50 },
+      { id: 16, name: 'Grapefruit', amount: 0 },
+      { id: 17, name: 'Orange', amount: 1 },
+      { id: 18, name: 'Pineapple', amount: 2 },
+      { id: 19, name: 'Plum', amount: 3 },
+      { id: 20, name: 'Strawberry', amount: 4 },
   ];
 }
