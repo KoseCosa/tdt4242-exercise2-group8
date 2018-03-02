@@ -6,19 +6,7 @@ templateUrl : './registration.component.html',
 styleUrls : ['./registration.component.css']
 })
 export class RegistrationComponent implements {
-
-    products: Product[];
-
-  constructor(private productService: ProductService) { }
-
-  ngOnInit() {
-    this.getProducts();
-  }
-
-  getProducts(): void{
-    this.productService.getProducts()
-      .subscribe(products => this.products = products)
-  }
+  constructor() { }
 }
 
 
