@@ -9,7 +9,7 @@
     <input #productAmount />
   </label>
   <!-- (click) passes input value to add() and then clears the input -->
-  <button (click)="add({name:productName.value, stock:productAmount.value})">
+  <button (click)="add(productName.value)">
     add
   </button>
 </div>

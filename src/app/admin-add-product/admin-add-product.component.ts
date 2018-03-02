@@ -19,20 +19,23 @@ export class AdminAddProductComponent implements OnInit {
     this.selectedProduct = product;
   }
 
-  add(newProduct: Product) : void {
+  add(productName: string) : void {
+    let newProduct = new Product();
+    newProduct.name = productName;
+    newProduct.stock = 10;
     this.products.push(newProduct);
   }
 
   products: Product[] = [
-      { id: 11, name: 'Apple', stock: 10, category: 'fruit' },
-      { id: 12, name: 'Banana', stock: 20 },
-      { id: 13, name: 'Pear', stock: 30 },
-      { id: 14, name: 'Mango', stock: 40 },
-      { id: 15, name: 'Passion fruit', stock: 50 },
-      { id: 16, name: 'Grapefruit', stock: 0 },
-      { id: 17, name: 'Orange', stock: 1 },
-      { id: 18, name: 'Pineapple', stock: 2 },
-      { id: 19, name: 'Plum', stock: 3 },
-      { id: 20, name: 'Strawberry', stock: 4 },
+      // { name: 'Apple', stock: 10, category: 'fruit' },
+      // { name: 'Banana', stock: 20 },
+      // { name: 'Pear', stock: 30 },
+      // { name: 'Mango', stock: 40 },
+      // { name: 'Passion fruit', stock: 50 },
+      // { name: 'Grapefruit', stock: 0 },
+      // { name: 'Orange', stock: 1 },
+      // { name: 'Pineapple', stock: 2 },
+      // { name: 'Plum', stock: 3 },
+      // { name: 'Strawberry', stock: 4 },
   ];
 }
