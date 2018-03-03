@@ -24,7 +24,7 @@ export class CartComponent implements OnInit {
   getTotalSum() {
     let sum = 0;
     for (const product of this.cart) {
-      sum += product.price;
+      sum += product.price*product.amount;
     }
     return sum;
   }
