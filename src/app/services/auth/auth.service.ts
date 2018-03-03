@@ -7,36 +7,42 @@ import { of } from 'rxjs/observable/of';
 @Injectable()
 export class AuthService {
   private loggedIn = new Subject<boolean>();
+  private isAdmin = new Subject<boolean>();
 
   users = [
-    {name: 'admin', password: 'admin', admin: true}
+    {name: 'admin', password: 'admin', admin: true},
+    {name: 'user', password: 'password', admin: false}
   ];
 
   constructor() {
     this.loggedIn.next(false);
+    this.isAdmin.next(false);
   }
 
   login(username, password) {
-    if (true) {
-      this.loggedIn.next(true);
-      console.log('logged in ');
+    const user = this.users.find(user => user.name === username);
+    if (user) {
+      this.isAdmin.next(user.admin);
+      this.loggedIn.next(user.password === password);
+      return true;
     }
+    return false;
   }
 
   logout() {
-    console.log('logged out');
     this.loggedIn.next(false);
   }
 
   register(username, password) {
+    if (this.users.find(user => user.name === username)) {
+      return false;
+    }
     this.users = [].concat(this.users, {name: username, password: password, admin: false});
+    return true;
   }
 
-  isAdmin(name) {
-    if (true) {
-      return true;
-    }
-    // return false;
+  getIsAdmin(): Observable<boolean> {
+    return this.isAdmin.asObservable();
   }
 
   getLoggedIn(): Observable<boolean> {

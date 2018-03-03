@@ -9,11 +9,13 @@ import { AuthService } from '../../services/auth/auth.service';
 })
 export class NavbarComponent implements OnInit {
   loggedIn: boolean;
+  isAdmin: boolean;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
     this.getLoggedIn();
+    this.getIsAdmin();
   }
 
   logIn() {
@@ -25,5 +27,8 @@ export class NavbarComponent implements OnInit {
   }
   getLoggedIn(): void {
    this.authService.getLoggedIn().subscribe(loggedIn => this.loggedIn = loggedIn);
- }
+  }
+  getIsAdmin(): void {
+   this.authService.getIsAdmin().subscribe(isAdmin => this.isAdmin = isAdmin);
+  }
 }
