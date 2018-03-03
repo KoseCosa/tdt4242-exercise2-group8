@@ -23,9 +23,4 @@ export class CartService {
   getCart() {
     return this.cart;
   }
-  /*addProduct(product) {
-    if cart
-    this.cart[product.id] = this.cart[product.id] ? this.cart[product.id] + 1 : 1;
-  }*/
-
 }
