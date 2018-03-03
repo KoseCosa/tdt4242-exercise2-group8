@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
+import { AuthService } from './services/auth/auth.service';
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -15,6 +17,9 @@ describe('AppComponent', () => {
       imports: [
         FormsModule,
         RouterTestingModule
+      ],
+      providers: [
+        AuthService
       ]
     }).compileComponents();
   }));
