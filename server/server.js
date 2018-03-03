@@ -1,6 +1,7 @@
 // Imports
 const express = require('express');
 const mongoose = require('mongoose');
+const passport = require('passport');
 
 // Initialize Express Server
 const server = express();
@@ -13,14 +14,20 @@ const port = process.env.PORT || 4300
 // Routers
 const apiRouter = require('./routes/api.js');
 
+
+
+server.use(passport.initialize());
+
+// Assign Routers
+server.use('/api',apiRouter);
 // Other Routes
 server.use(express.static(__dirname + '/../dist')); // Static Folder
 
 // Send other routes to Angular
 server.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '/../dist/index.html'));
-  });
+  res.sendFile(path.join(__dirname, '/../dist/index.html'));
+});
 
-server.use('/api',apiRouter);
+
 // Start Listening
 server.listen(port, () => console.log('Server listening on port '+port+'!'));
