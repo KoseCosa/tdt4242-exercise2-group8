@@ -16,5 +16,6 @@ export class LoginComponent implements OnInit {
 
   login(username, password) {
     this.authService.login(username, password);
+    // redirect should happend serverside when loggin in
   }
 }

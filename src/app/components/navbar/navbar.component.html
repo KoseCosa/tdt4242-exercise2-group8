@@ -3,12 +3,12 @@
     <div><a routerLink="/" routerLinkActive="active">Products</a></div>
   </div>
   <div style="text-align: center; width: 60px;"><a routerLink="/cart" routerLinkActive="active">Cart</a></div>
-  <div style="display: flex"*ngIf="!loggedIn">
-    <div style="text-align: center; width: 60px;"><span style="text-decoration: underline; cursor: pointer;" (click)="logIn()">Login</span></div>
-    <div style="text-align: center; width: 60px;"><span style="text-decoration: underline; cursor: pointer;">Register</span></div>
+  <div style="display: flex" *ngIf="!loggedIn">
+    <div style="text-align: center; width: 60px;"><a routerLink="/login" routerLinkActive="active">Login</a></div>
+    <div style="text-align: center; width: 60px;"><a routerLink="/register" routerLinkActive="active">Register</a></div>
   </div>
-  <div style="display: flex"*ngIf="loggedIn">
+  <div style="display: flex" *ngIf="loggedIn">
     <div style="text-align: center; width: 60px;"><span style="text-decoration: underline; cursor: pointer;" (click)="logOut()">Logout</span></div>
-    <div style="text-align: center; width: 60px;"><a routerLink="/admin" routerLinkActive="active">Admin</a></div>
+    <div style="text-align: center; width: 60px;" *ngIf="isAdmin"><a routerLink="/admin" routerLinkActive="active">Admin</a></div>
   </div>
 </div>
