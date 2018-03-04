@@ -1,17 +1,45 @@
 <div style="width: auto;">
-  <div>This is where the searchbar and filters will be</div>
+  <div style="display:flex;">
+    <div>
+      <label>Search: <input [(ngModel)]="filter.name" placeholder="Search products"></label>
+    </div>
+      <div style="width: 200px; text-align: right;">
+          <label for="limit">Show</label>
+          <select name="limit" [(ngModel)]="limit">
+            <option value="1">1</option>
+            <option value="3">3</option>
+            <option value="5">5</option>
+          </select>&nbsp;products&nbsp;
+      </div>
+
+    <!-- Could implement later 
+      <input type="number" name="page" [(ngModel)]="page" min="1" max="1" [attr.max]="[numberOfProducts]" step="1" placeholder="Page"> -->
+  
+    </div>
   <hr>
   <div style="display:flex;">
-    <div style="margin-right:auto">Products</div>
+    <div style="margin-right:auto">Products</div>    
     <div style="display:flex">
-      <div style="width: 100px; text-align: right;">Category</div>
+      <div>
+
+      </div>
+      <div style="width: 200px; text-align: right;">Category
+          <select [(ngModel)]="filter.category">
+            <option selected value="">All categories</option>
+            <option value="Baking Goods">Baking Goods</option>
+            <option value="Fruit">Fruit</option>
+            <option value="Vegetables">Vegetables</option>
+            <option value="Candy">Candy</option>
+            <option value="Meat">Meat</option>
+          </select>
+      </div>
       <div style="width: 100px; text-align: right;">Stock</div>
       <div style="width: 100px; text-align: right;">Price</div>
       <div style="width: 100px; text-align: right;">Add to Cart</div>
     </div>
   </div>
   <hr>
-  <div style="display:flex;" *ngFor="let product of products">
+  <div style="display:flex;" *ngFor="let product of products | productfilter:filter | slice:(page-1)*limit:page*limit">
     <div style="margin-right:auto">
       {{ product.name }}
       <br>
