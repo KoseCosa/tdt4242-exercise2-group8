@@ -11,9 +11,9 @@ config.registerStrategy(passport);
 
 exports.register = function(req,res, next){
   passport.authenticate('local-register', function(err,user,info){
-    if (err) { return (res.status(500).json({ success: false, message: "Error!"})); }
-    if (!user) { return (res.status(500).json({ success: false, message: "Username taken"}))}
-    return res.status(200).json({ success: true, message: "Register Successful" });
+    if (err) { return (res.json({ success: false, message: "Error!"})); }
+    if (!user) { return (res.json({ success: false, message: "Username taken"}))}
+    return res.json({ success: true, message: "Register Successful" });
   })(req, res, next);
 };
 
@@ -23,18 +23,25 @@ exports.login = function(req,res, next){
     if (!user) { return (res.status(500).json({ success: false, message: "Wrong Username or Password"}))}
     req.login(user, function(err){
       if (err) { return res.status(500).json({ success: false, message: "Wrong Username or Password"}); }
-      return res.status(200).json({ success: true, message: "Login Successful" });
+      return res.json({ success: true, message: "Login Successful" });
     })
   })(req, res, next);
 }
 
 exports.logout = function(req, res){
   req.logout();
-  res.status(200).json({ success: true, message: "Logout Successful" });
+  res.json({ success: true, message: "Logout Successful" });
 }
 
 exports.authenticate = function(req, res, next){
   if (req.isAuthenticated())
     return next();
-  res.status(500).json({ success: false, message: "User is not logged in" });
+  res.json({ success: false, message: "User is not logged in" });
+}
+
+exports.authorize = function(req, res, next){
+  if(req.user.admin){
+    return next();
+  }
+res.json({ success: false, message: "User is not admin" });
 }
