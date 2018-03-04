@@ -59,7 +59,7 @@
     <div style="width: 100px; text-align: right;">{{ product.category }}</div>
     <div style="width: 100px; text-align: right;">{{ product.stock }}</div>
     <div style="width: 100px; text-align: right;">{{ product.price | number : '1.2-2'}}</div>
-    <div style="width: 100px; text-align: right;">{{ product.salePercentage }}</div>
+    <div style="width: 100px; text-align: right;">{{ product.salePercentage }}%</div>
     <div style="width: 100px; text-align: right;" *ngIf="product.packageDeal==null;  else showDeal">/</div>
     <ng-template #showDeal>
       <div style="width: 100px; text-align: right;">{{ product.packageDeal.get }} for {{ product.packageDeal.pay }} </div>

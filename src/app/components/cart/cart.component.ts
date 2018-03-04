@@ -21,10 +21,19 @@ export class CartComponent implements OnInit {
     this.cart = this.cartService.getCart();
   }
 
+  getTotal(product) {
+    let amount = product.amount;
+    if (product.packageDeal!=null) {
+      amount = Math.floor(amount / product.packageDeal.get) * product.packageDeal.pay
+                  + amount % product.packageDeal.get;
+    }
+    return product.price*(1-product.salePercentage)*amount
+  }
+
   getTotalSum() {
     let sum = 0;
     for (const product of this.cart) {
-      sum += product.price*product.amount;
+      sum += this.getTotal(product);
     }
     return sum;
   }
