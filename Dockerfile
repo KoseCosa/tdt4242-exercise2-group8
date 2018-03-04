@@ -2,7 +2,7 @@
 FROM node:alpine
 
 # Create working directory
-WORKDIR /usr/tdt4242-exercise2-group8/
+WORKDIR /usr/tdt4242exercise2group8/
 
 # Add server to image
 COPY server ./server
