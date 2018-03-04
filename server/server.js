@@ -33,7 +33,7 @@ server.use(express.static(path.join(__dirname, '/../dist')));
 server.use('/api', apiRouter);
 
 // Catch all other routes and return the index file
-app.get('*', (req, res) => {
+server.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/../dist/index.html'));
 });
 
