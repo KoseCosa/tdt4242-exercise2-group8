@@ -2,13 +2,19 @@
 FROM node:alpine
 
 # Create working directory
-WORKDIR /usr/tdt4242-exercise2-group8/
+WORKDIR /usr/tdt4242exercise2group8/
+
+# Add app to image
+COPY dist ./dist
 
 # Add server to image
 COPY server ./server
 
-# Add app to image
-COPY dist ./dist
+WORKDIR /usr/tdt4242exercise2group8/server
+
+RUN npm install
+
+WORKDIR /usr/tdt4242exercise2group8/
 
 # Start the Server
 CMD ["node","server/server.js"]
