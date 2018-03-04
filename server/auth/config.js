@@ -1,5 +1,4 @@
-const JwtStrategy = require('passport-jwt').Strategy;
-const ExtractJwt = require('passport-jwt').ExtractJwt;
+const LocalStrategy = require('passport-local').Strategy;
 const passport = require('passport');
 
 const User = require('../db/models/user');
@@ -7,19 +6,46 @@ const secret = process.env.PASSPORT_SECRET || 'dev-secret';
 
 exports.secret = secret;
 
-exports.strategy = function(passport){
-  passport.use(new JwtStrategy({
-    jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('JWT'),
-    secretOrKey: secret}, function(jwt_payload, done) {
-    User.findOne({id: jwt_payload.id}, function(err, user) {
-          if (err) {
-              return done(err, false);
-          }
-          if (user) {
-              done(null, user);
-          } else {
-              done(null, false);
-          }
+exports.loginStrategy = function(passport){
+  passport.use('local-login', new LocalStrategy(
+    function(username, password, done) {
+      User.findOne({ username: username }, function (err, user) {
+        if (err) { return done(err); }
+        if (!user) { return done(null, false); }
+        if (!user.verifyPassword(password)) { return done(null, false); }
+        return done(null, user);
       });
-  }));
+    }
+  ));
 }
+
+exports.registerStrategy = function(passport){
+  passport.use('local-register', new LocalStrategy(
+    function(username, password, done) {
+      User.findOne({ username: username }, function (err, user) {
+        if (err) { return done(err); }
+        if (user) { return done(null, false); }
+        const newUser = new User({});
+        newUser.username = username;
+        newUser.password = newUser.generateHash(password);
+        newUser.save(function(err){
+          if (err){
+            throw err;
+          }
+        });
+        return done(null, newUser);
+      });
+    }
+  ));
+}
+
+exports.serializeUser = function(user, done) {
+  done(null, user.id);
+};
+
+    // used to deserialize the user
+exports.deserializeUser = function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+};

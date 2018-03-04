@@ -1,6 +1,8 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -16,7 +18,8 @@ describe('AppComponent', () => {
       ],
       imports: [
         FormsModule,
-        RouterTestingModule
+        RouterTestingModule,
+        HttpClientTestingModule
       ],
       providers: [
         AuthService

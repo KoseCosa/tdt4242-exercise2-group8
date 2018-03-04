@@ -14,8 +14,10 @@ router.post('/register', auth.register);
 
 router.post('/login', auth.login);
 
-router.get('/test', auth.authenticate, function(req,res){
-  res.send('awesome');
-})
+router.get('/loggedin', auth.authenticate, function(req,res){
+  res.status(200).json({ success: true, message: "User is logged in" })
+});
+
+router.post('/logout', auth.logout);
 
 module.exports = router;

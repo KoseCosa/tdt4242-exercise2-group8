@@ -1,7 +1,10 @@
 // Imports
 const express = require('express');
 const mongoose = require('mongoose');
+const session = require('express-session');
 const passport = require('passport');
+const path = require('path');
+const config = require('./auth/config');
 
 // Initialize Express Server
 const server = express();
@@ -15,8 +18,13 @@ const port = process.env.PORT || 4300
 const apiRouter = require('./routes/api.js');
 
 
-
+server.use(session({
+    secret: config.secret,
+    resave: true,
+    saveUninitialized: true,
+}));
 server.use(passport.initialize());
+server.use(passport.session());
 
 // Assign Routers
 server.use('/api',apiRouter);

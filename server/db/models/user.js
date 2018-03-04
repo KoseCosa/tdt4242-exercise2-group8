@@ -7,28 +7,12 @@ const UserSchema = mongoose.Schema({
   admin: { type: Boolean, required: true, default: false}
 });
 
-UserSchema.pre('save', function (next) {
-    var user = this;
-    if (this.isModified('password') || this.isNew) {
-      bcrypt.hash(user.password, 10, function(err, hash) {
-        if(err){
-          return next(err);
-        }
-        user.password = hash;
-        next();
-      });
-    } else {
-        return next();
-    }
-});
+UserSchema.methods.generateHash = function(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
 
-UserSchema.methods.comparePassword = function (passw, cb) {
-    bcrypt.compare(passw, this.password, function (err, isMatch) {
-        if (err) {
-            return cb(err);
-        }
-        cb(null, isMatch);
-    });
+UserSchema.methods.verifyPassword = function(password) {
+    return bcrypt.compareSync(password, this.password);
 };
 
 module.exports = mongoose.model('User', UserSchema);
