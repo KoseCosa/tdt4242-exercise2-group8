@@ -28,11 +28,14 @@ exports.registerStrategy = function(passport){
         const newUser = new User({});
         newUser.username = username;
         newUser.password = newUser.generateHash(password);
+        console.log('saving');
         newUser.save(function(err){
           if (err){
+            console.log(err)
             throw err;
           }
         });
+        console.log(newUser);
         return done(null, newUser);
       });
     }
