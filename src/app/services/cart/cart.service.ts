@@ -1,4 +1,8 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
 
 @Injectable()
 export class CartService {
@@ -8,7 +12,7 @@ export class CartService {
   addProduct(newProduct) {
     // TODO: Update to use strict compare when Products gets strings as ID
     // TODO: Cleanup Code if possible
-    const productInCart = this.cart.find(product => product.id == newProduct.id);
+    const productInCart = this.cart.find(product => product.id === newProduct.id);
     if (productInCart) {
       productInCart.amount = ('amount' in productInCart) ? productInCart.amount + 1 : 1;
     } else {

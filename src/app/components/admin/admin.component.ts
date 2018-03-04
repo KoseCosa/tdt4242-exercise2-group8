@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product/product.service';
 // Import Models
 import { Product } from '../../models/product';
-import { PackageDeal } from '../../models/product';
 
 @Component({
     selector: 'app-admin',
@@ -13,12 +12,12 @@ import { PackageDeal } from '../../models/product';
 
 export class AdminComponent implements OnInit {
   selectedProduct: Product;
-  products: Product[];
+  products: Product[] = [];
 
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
-    this.products = this.productService.getProducts();
+    this.getProducts();
   }
 
   onSelect(product: Product): void {
@@ -26,14 +25,30 @@ export class AdminComponent implements OnInit {
   }
 
   addPackageDeal(product: Product, toGet: number, toPay: number) {
-    product.packageDeal = new PackageDeal(toGet, toPay);
+    product.getBy = toGet;
+    product.payFor = toPay;
   }
 
-  add(productName: string, productCategory: string,
-    productStock: number, productPrice: number): void {
-    this.productService.addProduct(productName, productPrice, productCategory,
-      productStock);
-    this.products = this.productService.getProducts();
+  add(name: string, price: number, category: string, stock: number): void {
+    const product = new Product({
+      name: name,
+      price: price,
+      category: category,
+      stock: stock,
+      salePercentage: 0,
+      getBy: 1,
+      payFor: 1,
+    });
+    this.productService.addProduct(product).subscribe(
+      data => this.getProducts()
+    );
+  }
+
+  private getProducts(): void {
+    this.productService.getProducts().subscribe(
+      data => this.products = data.products.map(product => new Product(product)),
+      err => console.log(err)
+    );
   }
   /* TODO: Look into edit product atm I think it just access the product in ProductService directly and updates that.
   This will be a problem when we get it connected to the database since we want it to update the database aswell */

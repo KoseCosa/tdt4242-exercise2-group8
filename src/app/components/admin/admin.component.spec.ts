@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 
 import { AdminComponent } from './admin.component';
@@ -13,7 +14,7 @@ describe('AdminComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ AdminComponent ],
       providers: [ ProductService ],
-      imports: [ FormsModule ]
+      imports: [ FormsModule, HttpClientTestingModule ]
     })
     .compileComponents();
   }));

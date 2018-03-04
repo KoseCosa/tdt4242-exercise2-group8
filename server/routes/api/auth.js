@@ -12,11 +12,11 @@ router.post('/register', auth.register);
 
 router.post('/login', auth.login);
 
+router.post('/logout', auth.logout);
+
 router.get('/loggedin', auth.authenticate, function(req,res){
   res.json({ success: true, message: "User is logged in" })
 });
-
-router.post('/logout', auth.logout);
 
 router.get('/isadmin', auth.authenticate, auth.authorize, function(req,res){
   res.json({ success: true, message: "User is Admin" })
