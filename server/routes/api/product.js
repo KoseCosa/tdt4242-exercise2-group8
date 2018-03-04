@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const Product = require('../../db/models/product.js')
+const Product = require('../../db/models/product')
+const auth = require('../../auth/auth')
 
 const router = express.Router();
 
@@ -10,12 +11,10 @@ router.get('/', function(req,res){
   // TODO: Implement Search if needed
   Product.find(function(err, products){
     if (err){
-      // TODO: Implement proper error respons
-      res.send(err);
+      res.json({success: false, msg: err});
     }
     else{
-      // TODO: Implement proper success respons
-      res.json(products)
+      res.json({success: true, msg: 'Products Found', products: products});
     }
   })
 });
@@ -23,70 +22,68 @@ router.get('/', function(req,res){
 router.get('/:id', function(req,res){
   Product.findById(req.params.id, function(err, product){
     if (err){
-      // TODO: Implement proper error respons
-      res.send(err)
+      res.json({success: false, msg: err});
     }
-    // TODO: Implement proper success respons
-    res.json(product)
+    else{
+      res.json({success: true, msg: 'Product Found', product: product});
+    }
   });
 });
 
-router.post('/', function(req,res){
-  // TODO: Implement Admin Authentication
+router.post('/',auth.authenticate,auth.authorize, function(req,res){
+
   let product = new Product();
-  product.name = req.body.name;
-  product.price = req.body.price;
-  product.amount = req.body.amount;
+  product.name = req.body.name || product.name;
+  product.price = req.body.price || product.price;
+  product.category = req.body.category || product.category;
+  product.stock = req.body.stock || product.stock;
+  product.salePercentage = req.body.salePercentage || product.salePercentage;
+  product.getBy = req.body.packageDeal.getBy || product.getBy;
+  product.payFor = req.body.packageDeal.payFor || product.payFor;
   product.save(function(err){
     if (err) {
-      // TODO: Implement proper error respons
-      res.send(err);
+      res.json({success: false, msg: err});
     }
     else{
-      // TODO: Implement proper success respons
-      res.send('Product created')
+      res.json({success: true, msg: 'Product Created'});
     }
 
   })
 });
 
-router.put('/:id', function(req,res){
-  // TODO: Implement Admin Authentication
+router.put('/:id', auth.authenticate,auth.authorize, function(req,res){
   Product.findById(req.params.id, function(err, product){
     if (err){
-      // TODO: Implement proper error respons
-      res.send(err);
+      res.json({success: false, msg: err});
     }
     else {
       product.name = req.body.name || product.name;
       product.price = req.body.price || product.price;
-      product.amount = req.body.amount || product.amount;
+      product.category = req.body.category || product.category;
+      product.stock = req.body.stock || product.stock;
+      product.salePercentage = req.body.salePercentage || product.salePercentage;
+      product.getBy = req.body.packageDeal.getBy || product.getBy;
+      product.payFor = req.body.packageDeal.payFor || product.payFor;
       product.save(function(err){
         if (err){
-          // TODO: Implement proper error respons
-          res.send(err);
+          res.json({success: false, msg: err});
         }
         else{
-          // TODO: Implement proper success respons
-          res.send('Product updated!')
+          res.json({success: true, msg: 'Product updated'});
         }
       });
     }
   });
 });
 
-router.delete('/:id', function(req,res){
-  // TODO: Implement Admin Authentication
+router.delete('/:id', auth.authenticate,auth.authorize, function(req,res){
   Product.remove({_id: req.params.id}, function(err, product){
     if (err){
-      // TODO: Implement proper error respons
-      res.send(err)
+      res.json({success: false, msg: err});
     }
     else{
-      // TODO: Implement proper success respons
-      res.send('Product Deleted!')
+      res.json({success: true, msg: 'Product Deleted'});
     }
-
   });
 });
 
