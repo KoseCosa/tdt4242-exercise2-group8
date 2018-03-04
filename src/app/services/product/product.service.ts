@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../../models/product';
 import { PackageDeal } from '../../models/product';
-
+import { ProductFilterPipe } from '../../models/product-filter.pipe';
 @Injectable()
 export class ProductService {
   productCounter = 4;

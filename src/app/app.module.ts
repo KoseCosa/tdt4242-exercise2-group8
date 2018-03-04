@@ -41,5 +41,7 @@ import { ProductFilterPipe } from './models/product-filter.pipe';
     CartService,
     AuthService],
   bootstrap: [AppComponent]
+  ,
+  exports: [ProductFilterPipe]
 })
 export class AppModule { }
