@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const Product = require('../../db/models/product.js')
+const auth = require('../../auth/auth')
 
 const router = express.Router();
 
@@ -31,8 +32,7 @@ router.get('/:id', function(req,res){
   });
 });
 
-router.post('/', function(req,res){
-  // TODO: Implement Admin Authentication
+router.post('/',auth.authenticate,auth.authorize, function(req,res){
   let product = new Product();
   product.name = req.body.name;
   product.price = req.body.price;
@@ -50,8 +50,7 @@ router.post('/', function(req,res){
   })
 });
 
-router.put('/:id', function(req,res){
-  // TODO: Implement Admin Authentication
+router.put('/:id', auth.authenticate,auth.authorize, function(req,res){
   Product.findById(req.params.id, function(err, product){
     if (err){
       // TODO: Implement proper error respons
@@ -75,8 +74,7 @@ router.put('/:id', function(req,res){
   });
 });
 
-router.delete('/:id', function(req,res){
-  // TODO: Implement Admin Authentication
+router.delete('/:id', auth.authenticate,auth.authorize, function(req,res){
   Product.remove({_id: req.params.id}, function(err, product){
     if (err){
       // TODO: Implement proper error respons
@@ -86,7 +84,6 @@ router.delete('/:id', function(req,res){
       // TODO: Implement proper success respons
       res.send('Product Deleted!')
     }
-
   });
 });
 
