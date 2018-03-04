@@ -30,9 +30,9 @@ export class AdminComponent implements OnInit {
   }
 
   add(productName: string, productCategory: string,
-    productStock: number, productPrice: number, productSale: number): void {
+    productStock: number, productPrice: number): void {
     this.productService.addProduct(productName, productPrice, productCategory,
-      productStock, productSale);
+      productStock);
     this.products = this.productService.getProducts();
   }
   /* TODO: Look into edit product atm I think it just access the product in ProductService directly and updates that.
