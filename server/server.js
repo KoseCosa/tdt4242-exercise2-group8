@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session')
 const RedisStore = require('connect-redis')(session)
-
+const passportInint = require('./auth/init')
 // Initialize Express Server
 const server = express();
 
@@ -17,6 +17,7 @@ const port = process.env.PORT || 4300
 const apiRouter = require('./routes/api.js');
 
 // Passport
+
 /*server.use(session({
     store: new RedisStore({
         url: config.redisStore.url
@@ -25,7 +26,16 @@ const apiRouter = require('./routes/api.js');
     resave: false,
     saveUninitialized: false
     }))
-*/    
+
+
+
+server.get('/profile',
+    authenticationMiddleware(),
+    function(){
+    res.send("Logged in")
+    })
+*/
+
 server.use(passport.initialize())
 server.use(passport.session())
 
