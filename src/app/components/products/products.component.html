@@ -1,7 +1,7 @@
 <div style="width: auto;">
   <div style="display:flex;">
     <div>
-      <label>Search: <input [(ngModel)]="filter.name" placeholder="Search products"></label>
+      <label>Search: <input name="search" [(ngModel)]="filter.name" placeholder="Search products"></label>
     </div>
       <div style="width: 200px; text-align: right;">
           <label for="limit">Show</label>
@@ -23,8 +23,8 @@
       <div>
 
       </div>
-      <div style="width: 200px; text-align: right;">Category
-          <select [(ngModel)]="filter.category">
+      <div style="width: 200px; text-align: right;">Category:
+          <select name="category" [(ngModel)]="filter.category">
             <option selected value="">All categories</option>
             <option value="Baking Goods">Baking Goods</option>
             <option value="Fruit">Fruit</option>
@@ -35,8 +35,6 @@
       </div>
       <div style="width: 100px; text-align: right;">Stock</div>
       <div style="width: 100px; text-align: right;">Price</div>
-      <div style="width: 100px; text-align: right;">Sale</div>
-      <div style="width: 100px; text-align: right;">Package Deal</div>
       <div style="width: 100px; text-align: right;">Add to Cart</div>
     </div>
   </div>
@@ -50,11 +48,6 @@
     <div style="width: 100px; text-align: right;">{{ product.category }}</div>
     <div style="width: 100px; text-align: right;">{{ product.stock }}</div>
     <div style="width: 100px; text-align: right;">{{ product.price | number : '1.2-2'}}</div>
-    <div style="width: 100px; text-align: right;">{{ product.salePercentage }}%</div>
-    <div style="width: 100px; text-align: right;" *ngIf="product.packageDeal==null;  else showDeal">/</div>
-    <ng-template #showDeal>
-      <div style="width: 100px; text-align: right;">{{ product.packageDeal.get }} for {{ product.packageDeal.pay }} </div>
-    </ng-template>
     <div style="width: 100px; text-align: right;">
       <span style="text-decoration: underline; cursor: pointer;" (click)="addProduct(product)">Add to Cart</span>
     </div>

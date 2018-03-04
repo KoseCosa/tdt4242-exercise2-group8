@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductsComponent } from './products.component';
+import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 
 import { CartService } from '../../services/cart/cart.service';
 import { ProductService } from '../../services/product/product.service';
@@ -12,7 +13,8 @@ describe('ProductsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ProductsComponent ],
-      providers: [ CartService, ProductService ]
+      providers: [ CartService, ProductService ],
+      imports: [ FormsModule ]
     })
     .compileComponents();
   }));
