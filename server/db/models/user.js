@@ -1,5 +1,5 @@
 mongoose = require('mongoose');
-bcrypt = require('bcrypt');
+bcrypt = require('bcryptjs');
 
 const UserSchema = mongoose.Schema({
   username: { type: String, required: true, unique: true },
@@ -8,11 +8,12 @@ const UserSchema = mongoose.Schema({
 });
 
 UserSchema.methods.generateHash = function(password) {
+    console.log('generating hash')
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
 UserSchema.methods.verifyPassword = function(password) {
-    return bcrypt.compareSync(password, this.password);
+    return bcrypt.compare(password, this.password);
 };
 
 module.exports = mongoose.model('User', UserSchema);

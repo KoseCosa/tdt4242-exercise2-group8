@@ -6,8 +6,6 @@ const User = require('../../db/models/user.js')
 
 const router = express.Router();
 
-// Enable CORS
-
 router.use(bodyParser.urlencoded({ extended: false }));
 
 router.post('/register', auth.register);

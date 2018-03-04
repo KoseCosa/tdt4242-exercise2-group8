@@ -25,7 +25,12 @@ server.use(session({
 }));
 server.use(passport.initialize());
 server.use(passport.session());
-
+// Enable CORS
+server.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 // Static Routes
 server.use(express.static(path.join(__dirname, '/../dist')));
 
@@ -38,4 +43,5 @@ server.get('*', (req, res) => {
 });
 
 // Start Listening
+console.log('Database: ',dbURI);
 server.listen(port, () => console.log('Server listening on port '+port+'!'));

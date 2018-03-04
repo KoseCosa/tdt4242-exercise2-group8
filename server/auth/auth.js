@@ -11,12 +11,9 @@ config.registerStrategy(passport);
 
 exports.register = function(req,res, next){
   passport.authenticate('local-register', function(err,user,info){
-    if (err) { return (err); }
+    if (err) { return (res.status(500).json({ success: false, message: "Error!"})); }
     if (!user) { return (res.status(500).json({ success: false, message: "Username taken"}))}
-    req.login(user, function(err){
-      if (err) { return next(err); }
-      return res.status(200).json({ success: true, message: "Register Successful" });
-    })
+    return res.status(200).json({ success: true, message: "Register Successful" });
   })(req, res, next);
 };
 
@@ -25,7 +22,7 @@ exports.login = function(req,res, next){
     if (err) { return (err); }
     if (!user) { return (res.status(500).json({ success: false, message: "Wrong Username or Password"}))}
     req.login(user, function(err){
-      if (err) { return next(err); }
+      if (err) { return res.status(500).json({ success: false, message: "Wrong Username or Password"}); }
       return res.status(200).json({ success: true, message: "Login Successful" });
     })
   })(req, res, next);
