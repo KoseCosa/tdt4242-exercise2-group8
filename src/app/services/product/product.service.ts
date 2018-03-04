@@ -6,6 +6,9 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
+
+import { PackageDeal } from '../../models/product';
+import { ProductFilterPipe } from '../../models/product-filter.pipe';
 @Injectable()
 export class ProductService {
 
