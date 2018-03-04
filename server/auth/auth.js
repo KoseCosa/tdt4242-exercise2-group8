@@ -10,7 +10,6 @@ config.loginStrategy(passport);
 config.registerStrategy(passport);
 
 exports.register = function(req,res, next){
-  console.log('registering')
   passport.authenticate('local-register', function(err,user,info){
     if (err) { return (res.status(500).json({ success: false, message: "Error!"})); }
     if (!user) { return (res.status(500).json({ success: false, message: "Username taken"}))}
