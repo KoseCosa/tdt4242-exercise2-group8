@@ -40,9 +40,6 @@ jobs:
     - stage: deploy to stage
       before_script:
       - npm run build --aot
-      - cd server
-      - npm install
-      - cd ..
 
       script:
       - docker build -t tdt4242-exercise2-group8-stage .
