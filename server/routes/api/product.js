@@ -1,6 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const Product = require('../../db/models/product.js')
+const Product = require('../../db/models/product')
 const auth = require('../../auth/auth')
 
 const router = express.Router();
@@ -33,10 +33,8 @@ router.get('/:id', function(req,res){
 });
 
 router.post('/',auth.authenticate,auth.authorize, function(req,res){
+
   let product = new Product();
-  product.name = req.body.name;
-  product.price = req.body.price;
-  product.amount = req.body.amount;
   product.save(function(err){
     if (err) {
       // TODO: Implement proper error respons
@@ -59,7 +57,11 @@ router.put('/:id', auth.authenticate,auth.authorize, function(req,res){
     else {
       product.name = req.body.name || product.name;
       product.price = req.body.price || product.price;
-      product.amount = req.body.amount || product.amount;
+      product.category = req.body.category || product.category;
+      product.stock = req.body.stock || product.stock;
+      product.salePercentage = req.body.salePercentage || product.salePercentage;
+      product.getBy = req.body.getBy || product.getBy;
+      product.payFor = req.body.payFor || product.payFor;
       product.save(function(err){
         if (err){
           // TODO: Implement proper error respons
