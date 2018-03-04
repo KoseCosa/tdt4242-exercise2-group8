@@ -1,0 +1,29 @@
+<div style="width: auto;">
+  <div>This is where the searchbar and filters will be</div>
+  <hr>
+  <div style="display:flex;">
+    <div style="margin-right:auto">Products</div>
+    <div style="display:flex">
+      <div style="width: 100px; text-align: right;">Category</div>
+      <div style="width: 100px; text-align: right;">Stock</div>
+      <div style="width: 100px; text-align: right;">Price</div>
+      <div style="width: 100px; text-align: right;">Add to Cart</div>
+    </div>
+  </div>
+  <hr>
+  <div style="display:flex;" *ngFor="let product of products">
+    <div style="margin-right:auto">
+      {{ product.name }}
+      <br>
+      ProductID: {{ product.id }}
+    </div>
+    <div style="width: 100px; text-align: right;">{{ product.category }}</div>
+    <div style="width: 100px; text-align: right;">{{ product.stock }}</div>
+    <div style="width: 100px; text-align: right;">{{ product.price | number : '1.2-2'}}</div>
+    <div style="width: 100px; text-align: right;">
+      <span style="text-decoration: underline; cursor: pointer;" (click)="addProduct(product)">Add to Cart</span>
+    </div>
+  </div>
+  <div *ngIf="products.length < 1">No products for sale</div>
+  <hr>
+</div>

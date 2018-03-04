@@ -1,0 +1,15 @@
+<div *ngIf="!loggedIn">
+  <label>Username:
+    <input #username />
+  </label>
+  <label>Password:
+    <input #password />
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="login(username.value, password.value)">
+    Login
+  </button>
+</div>
+<div *ngIf="loggedIn">
+  Already logged in.
+</div>

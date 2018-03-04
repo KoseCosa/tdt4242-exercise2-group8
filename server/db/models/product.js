@@ -2,8 +2,11 @@ mongoose = require('mongoose');
 
 const ProductSchema = mongoose.Schema({
   name: String,
-  price: Number, //Stored in øre not kroners
-  amount: Number
+  price: Number,
+  category: String,
+  stock: Number,
+  salePercentage: Number
+  // Add Package Deal Object
 });
 
 module.exports = mongoose.model('Product', ProductSchema);
