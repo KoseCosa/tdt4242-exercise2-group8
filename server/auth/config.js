@@ -2,7 +2,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const passport = require('passport');
 
 const User = require('../db/models/user');
-const secret = process.env.PASSPORT_SECRET || 'dev-secret';
+const secret = 'dev-secret';
 
 exports.secret = secret;
 
