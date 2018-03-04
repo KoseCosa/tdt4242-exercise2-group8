@@ -3,11 +3,19 @@
   <label>Name:
     <input #productName />
   </label>
-  <label>Amount:
-    <input #productAmount />
+  <label>Category:
+    <input #productCategory />
   </label>
+  <label>Stock:
+    <input #productStock />
+  </label>
+  <label>Price:
+    <input #productPrice />
+  </label>
+
   <!-- (click) passes input value to add() and then clears the input -->
-  <button (click)="add(productName.value)">
+  <button (click)="add(productName.value, productCategory.value,
+  productStock.value,productPrice.value)">
     add
   </button>
 </div>
