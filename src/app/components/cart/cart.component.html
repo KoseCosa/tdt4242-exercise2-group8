@@ -4,6 +4,8 @@
     <div style="display:flex">
       <div style="width: 100px; text-align: right;">Amount</div>
       <div style="width: 100px; text-align: right;">Price</div>
+      <div style="width: 100px; text-align: right;">Sale</div>
+      <div style="width: 100px; text-align: right;">Package Deal</div>
       <div style="width: 100px; text-align: right;">Total</div>
       <div style="width: 100px; text-align: right;">Delete</div>
     </div>
@@ -17,7 +19,13 @@
     </div>
     <div style="width: 100px; text-align: right;">{{ product.amount }}</div>
     <div style="width: 100px; text-align: right;">{{ product.price | number : '1.2-2'}}</div>
-    <div style="width: 100px; text-align: right;">{{ product.price*product.amount | number : '1.2-2'}}</div>
+    <div style="width: 100px; text-align: right;">{{ product.salePercentage }}%</div>
+    <div style="width: 100px; text-align: right;" *ngIf="product.packageDeal==null;  else showDeal">/</div>
+    <ng-template #showDeal>
+      <div style="width: 100px; text-align: right;">{{ product.packageDeal.get }} for {{ product.packageDeal.pay }} </div>
+    </ng-template>
+
+    <div style="width: 100px; text-align: right;">{{ getTotal(product) | number : '1.2-2'}}</div>
     <div style="width: 100px; text-align: right;" ><span style="text-decoration: underline; cursor: pointer;" (click)="removeProduct(product)">Delete</span></div>
   </div>
   <div *ngIf="cart.length < 1">No products in cart</div>

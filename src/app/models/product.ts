@@ -9,6 +9,10 @@ export class Product {
 }
 
 export class PackageDeal {
+  constructor(get: number, pay: number) {
+    this.get = get;
+    this.pay = pay;
+  }
   get: number;
   pay: number;
 }
