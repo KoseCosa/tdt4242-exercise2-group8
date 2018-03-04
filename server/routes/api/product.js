@@ -31,15 +31,15 @@ router.get('/:id', function(req,res){
 });
 
 router.post('/',auth.authenticate,auth.authorize, function(req,res){
-
+  console.log(req.body);
   let product = new Product();
   product.name = req.body.name || product.name;
   product.price = req.body.price || product.price;
   product.category = req.body.category || product.category;
   product.stock = req.body.stock || product.stock;
   product.salePercentage = req.body.salePercentage || product.salePercentage;
-  product.getBy = req.body.packageDeal.getBy || product.getBy;
-  product.payFor = req.body.packageDeal.payFor || product.payFor;
+  product.getBy = req.body.getBy || product.getBy;
+  product.getBy = req.body.payFor || product.payFor;
   product.save(function(err){
     if (err) {
       res.json({success: false, msg: err});
@@ -52,19 +52,20 @@ router.post('/',auth.authenticate,auth.authorize, function(req,res){
 });
 
 router.put('/:id', auth.authenticate,auth.authorize, function(req,res){
+  const body = JSON.parse(req.body)
   Product.findById(req.params.id, function(err, product){
     if (err){
       res.json({success: false, msg: err});
     }
     else {
-      product.name = req.body.name || product.name;
-      product.price = req.body.price || product.price;
-      product.category = req.body.category || product.category;
-      product.stock = req.body.stock || product.stock;
-      product.salePercentage = req.body.salePercentage || product.salePercentage;
-      product.getBy = req.body.packageDeal.getBy || product.getBy;
-      product.payFor = req.body.packageDeal.payFor || product.payFor;
-      product.save(function(err){
+        product.name = body.name || product.name;
+        product.price = body.price || product.price;
+        product.category = body.category || product.category;
+        product.stock = body.stock || product.stock;
+        product.salePercentage = req.body.salePercentage || product.salePercentage;
+        product.getBy = body.getBy || product.getBy;
+        product.getBy = req.body.payFor || product.payFor;
+        product.save(function(err){
         if (err){
           res.json({success: false, msg: err});
         }
