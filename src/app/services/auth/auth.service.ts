@@ -2,18 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthService {
-  private loggedIn = new Subject<boolean>();
-  private isAdmin = new Subject<boolean>();
+  private loggedIn = new BehaviorSubject<boolean>(false);
+  private adminUser = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {
     this.isLoggedIn();
-    this.isAdmin.next(false);
+    this.isAdmin();
   }
 
   login(username, password) {
@@ -28,8 +28,8 @@ export class AuthService {
           .set('Content-Type', 'application/x-www-form-urlencoded')
       }
     ).subscribe(
-      data => this.loggedIn.next(true),
-      err => console.log(err)
+      data => { this.isLoggedIn(); this.isAdmin(); },
+      err => { this.isLoggedIn(); this.isAdmin(); },
     );
   }
 
@@ -43,8 +43,8 @@ export class AuthService {
           .set('Content-Type', 'application/x-www-form-urlencoded')
       }
     ).subscribe(
-      data => this.loggedIn.next(false),
-      err => console.log(err)
+      data => { this.isLoggedIn(); this.isAdmin(); },
+      err => { this.isLoggedIn(); this.isAdmin(); },
     );
   }
 
@@ -69,13 +69,23 @@ export class AuthService {
 
     this.http.get<{success: boolean, msg: string}>('/api/auth/loggedin')
     .subscribe(
-      data => this.loggedIn.next(true),
-      err => this.loggedIn.next(false)
+      data => this.loggedIn.next(data.success),
+      err => this.loggedIn.next(err.success || false)
     );
   }
 
-  getIsAdmin(): Observable<boolean> {
-    return this.isAdmin.asObservable();
+  isAdmin() {
+    const body = new HttpParams();
+
+    this.http.get<{success: boolean, msg: string}>('/api/auth/isadmin')
+    .subscribe(
+      data => this.adminUser.next(data.success),
+      err => this.adminUser.next(err.success || false)
+    );
+  }
+
+  getAdmin(): Observable<boolean> {
+    return this.adminUser.asObservable();
   }
 
   getLoggedIn(): Observable<boolean> {

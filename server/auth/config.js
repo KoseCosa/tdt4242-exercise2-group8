@@ -30,7 +30,6 @@ exports.registerStrategy = function(passport){
         newUser.password = newUser.generateHash(password);
         newUser.save(function(err){
           if (err){
-            console.log(err)
             throw err;
           }
         });

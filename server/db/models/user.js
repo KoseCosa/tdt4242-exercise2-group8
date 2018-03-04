@@ -8,7 +8,6 @@ const UserSchema = mongoose.Schema({
 });
 
 UserSchema.methods.generateHash = function(password) {
-    console.log('generating hash')
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 

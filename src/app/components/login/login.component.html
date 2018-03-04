@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="!loggedIn">
   <label>Username:
     <input #username />
   </label>
@@ -9,4 +9,7 @@
   <button (click)="login(username.value, password.value)">
     Login
   </button>
+</div>
+<div *ngIf="loggedIn">
+  Already logged in.
 </div>

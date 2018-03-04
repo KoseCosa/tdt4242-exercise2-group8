@@ -8,14 +8,15 @@ import { AuthService } from '../../services/auth/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  loggedIn: boolean;
-  isAdmin: boolean;
+  loggedIn = false;
+  isAdmin = false;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {
+    this.getLoggedIn();
+    this.getAdmin();
+  }
 
   ngOnInit() {
-    this.getLoggedIn();
-    this.getIsAdmin();
   }
 
   logIn() {
@@ -28,7 +29,7 @@ export class NavbarComponent implements OnInit {
   getLoggedIn(): void {
    this.authService.getLoggedIn().subscribe(loggedIn => this.loggedIn = loggedIn);
   }
-  getIsAdmin(): void {
-   this.authService.getIsAdmin().subscribe(isAdmin => this.isAdmin = isAdmin);
+  getAdmin(): void {
+   this.authService.getAdmin().subscribe(isAdmin => this.isAdmin = isAdmin);
   }
 }
