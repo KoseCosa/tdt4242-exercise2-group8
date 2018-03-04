@@ -2,7 +2,7 @@
 FROM node:alpine
 
 # Create working directory
-WORKDIR /usr/cosapg/
+WORKDIR /usr/tdt4242-exercise2-group8/
 
 # Add server to image
 COPY server ./server

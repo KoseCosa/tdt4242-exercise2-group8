@@ -26,16 +26,16 @@ server.use(session({
 server.use(passport.initialize());
 server.use(passport.session());
 
-// Assign Routers
-server.use('/api',apiRouter);
-// Other Routes
-server.use(express.static(__dirname + '/../dist')); // Static Folder
+// Static Routes
+server.use(express.static(path.join(__dirname, '/../dist')));
 
-// Send other routes to Angular
-server.get('*', (req, res) => {
+// Set our Api Routes
+server.use('/api', apiRouter);
+
+// Catch all other routes and return the index file
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/../dist/index.html'));
 });
-
 
 // Start Listening
 server.listen(port, () => console.log('Server listening on port '+port+'!'));
