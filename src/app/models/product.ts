@@ -1,13 +1,15 @@
 export class Product {
-  constructor(product: any) {
-    this.id = product._id;
-    this.name = product.name;
-    this.price = product.price;
-    this.category = product.category;
-    this.stock = product.stock;
-    this.salePercentage = product.salePercentage;
-    this.getBy = product.getBy;
-    this.payFor = product.payFor;
+  constructor(product: any = null) {
+    if (product) {
+      this.id = product._id || null;
+      this.name = product.name || null;
+      this.price = product.price || null;
+      this.category = product.category || null;
+      this.stock = product.stock || null;
+      this.salePercentage = product.salePercentage || null;
+      this.getBy = product.getBy || null;
+      this.payFor = product.payFor || null;
+    }
   }
   id: number;
   name: string;

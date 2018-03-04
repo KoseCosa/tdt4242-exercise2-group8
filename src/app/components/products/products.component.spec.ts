@@ -16,7 +16,7 @@ describe('ProductsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductsComponent ],
+      declarations: [ ProductsComponent, ProductFilterPipe ],
       imports: [ FormsModule, HttpClientTestingModule ],
       providers: [ CartService, ProductService ]
     })
