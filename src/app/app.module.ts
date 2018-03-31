@@ -17,6 +17,7 @@ import { ProductService } from './services/product/product.service';
 import { CartService } from './services/cart/cart.service';
 import { AuthService } from './services/auth/auth.service';
 import { ProductFilterPipe } from './models/product-filter.pipe';
+import { AdminFrontpageComponent } from './components/admin-frontpage/admin-frontpage.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ProductFilterPipe } from './models/product-filter.pipe';
     RegistrationComponent,
     LoginComponent,
     RegisterComponent,
-    ProductFilterPipe
+    ProductFilterPipe,
+    AdminFrontpageComponent
   ],
   imports: [
     BrowserModule,

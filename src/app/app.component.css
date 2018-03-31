@@ -1,4 +1,9 @@
 /* AppComponent's private CSS styles */
+body {
+  background-color: #7ec0ee;
+  height: 100vh;
+}
+
 h1 {
   font-size: 1.2em;
   color: #999;
@@ -26,4 +31,8 @@ nav a:hover {
 }
 nav a.active {
   color: #039be5;
+}
+
+.tile {
+  box-shadow:
 }
