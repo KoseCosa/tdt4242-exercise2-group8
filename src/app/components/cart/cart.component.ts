@@ -29,7 +29,7 @@ export class CartComponent implements OnInit {
       amount = Math.floor(amount / product.packageDeal.get) * product.packageDeal.pay
                   + amount % product.packageDeal.get;
     }
-    return product.price*(1-product.salePercentage)*amount
+    return product.price*(1-product.salePercentage/100)*amount
   }
 
   getTotalSum() {
