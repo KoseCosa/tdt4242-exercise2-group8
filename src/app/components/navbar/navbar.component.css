@@ -1,3 +1,14 @@
-a:visited {
-  color: black;
+.navbar {
+  background-color: #e24e42;
+}
+
+.nav-button {
+  color: #f4f4f4;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+.nav-button:hover {
+  color: #fff;
 }
