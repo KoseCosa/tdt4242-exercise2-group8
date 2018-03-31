@@ -31,4 +31,14 @@ export class ProductService {
       }
     );
   }
+
+  editProduct(product: Product): Observable<{success: boolean, msg: string}> {
+    return this.http.put<{success: boolean, msg: string}>('/api/product/' + product.id,
+      JSON.stringify(product),
+      {
+        headers: new HttpHeaders()
+          .set('Content-Type', 'application/json')
+      }
+    );
+  }
 }
