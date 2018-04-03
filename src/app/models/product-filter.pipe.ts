@@ -23,7 +23,7 @@ export class ProductFilterPipe implements PipeTransform {
    * @return {boolean} True if product satisfies filters, false if not.
    */
   applyFilter(product: Product, filter: Product): boolean {
-    for (let field in filter) {
+    for (const field in filter) {
       if (filter[field]) {
         if (typeof filter[field] === 'string') {
           if (product[field].toLowerCase().indexOf(filter[field].toLowerCase()) === -1) {

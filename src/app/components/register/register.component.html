@@ -3,7 +3,7 @@
     <input #username />
   </label>
   <label>Password:
-    <input #password />
+    <input type="password" #password />
   </label>
   <!-- (click) passes input value to add() and then clears the input -->
   <button (click)="register(username.value, password.value)">
