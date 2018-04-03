@@ -1,0 +1,20 @@
+#cart{
+    width: auto;
+}
+
+#title{
+    margin-right:auto;
+}
+
+#sum{
+    margin-left:auto;
+}
+
+.container{
+    display:flex;
+}
+
+.table{
+    width: 100px; 
+    text-align: right;
+}

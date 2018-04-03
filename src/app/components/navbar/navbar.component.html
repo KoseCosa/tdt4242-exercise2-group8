@@ -1,13 +1,13 @@
-<div class="navbar" style="display: flex; padding: 15px">
-  <div style="display: flex; margin-right: auto">
+<div class="navbar">
+  <div class="container" id="nav">
     <div><a class="nav-button" routerLink="/" routerLinkActive="active">Grocery Store</a></div>
   </div>
   <div><a class="nav-button" routerLink="/cart" routerLinkActive="active">Cart</a></div>
-  <div style="display: flex" *ngIf="!loggedIn">
-    <div style="margin-left: 15px;"><a class="nav-button" routerLink="/login" routerLinkActive="active">Login</a></div>
-    <div style="margin-left: 15px;"><a class="nav-button" routerLink="/register" routerLinkActive="active">Register</a></div>
+  <div class="container" *ngIf="!loggedIn">
+    <div class="nav"><a class="nav-button" routerLink="/login" routerLinkActive="active">Login</a></div>
+    <div class="nav"><a class="nav-button" routerLink="/register" routerLinkActive="active">Register</a></div>
   </div>
-  <div style="margin-left: 15px;" *ngIf="loggedIn"><a class="nav-button" routerLink="/" routerLinkActive="active" (click)="logOut()">Logout</a></div>
-  <div style="margin-left: 15px;" *ngIf="loggedIn && !isAdmin"><a class="nav-button" routerLink="/profile" routerLinkActive="active">Profile</a></div>
-  <div style="margin-left: 15px;" *ngIf="isAdmin"><a class="nav-button" routerLink="/admin" routerLinkActive="active">Admin</a></div>
+  <div class="nav" *ngIf="loggedIn"><a class="nav-button" routerLink="/" routerLinkActive="active" (click)="logOut()">Logout</a></div>
+  <div class="nav" *ngIf="loggedIn && !isAdmin"><a class="nav-button" routerLink="/profile" routerLinkActive="active">Profile</a></div>
+  <div class="nav" *ngIf="isAdmin"><a class="nav-button" routerLink="/admin" routerLinkActive="active">Admin</a></div>
 </div>
