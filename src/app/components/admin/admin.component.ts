@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 // Import services
 import { ProductService } from '../../services/product/product.service';
 // Import Models
-import { Product } from '../../models/product';
+import { Product } from '../../models/product.model';
 
 @Component({
     selector: 'app-admin',
@@ -52,4 +52,9 @@ export class AdminComponent implements OnInit {
   }
   /* TODO: Look into edit product atm I think it just access the product in ProductService directly and updates that.
   This will be a problem when we get it connected to the database since we want it to update the database aswell */
+  editProduct(): void {
+    this.productService.editProduct(this.selectedProduct).subscribe(
+      data => this.getProducts()
+    );
+  }
 }

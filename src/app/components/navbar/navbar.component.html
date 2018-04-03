@@ -8,5 +8,6 @@
     <div style="margin-left: 15px;"><a class="nav-button" routerLink="/register" routerLinkActive="active">Register</a></div>
   </div>
   <div style="margin-left: 15px;" *ngIf="loggedIn"><span class="nav-button" (click)="logOut()">Logout</span></div>
+  <div style="margin-left: 15px;" *ngIf="loggedIn && !isAdmin"><a class="nav-button" routerLink="/profile" routerLinkActive="active">Profile</a></div>
   <div style="margin-left: 15px;" *ngIf="isAdmin"><a class="nav-button" routerLink="/admin" routerLinkActive="active">Admin</a></div>
 </div>

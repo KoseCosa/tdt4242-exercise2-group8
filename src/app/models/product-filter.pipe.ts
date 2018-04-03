@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { Product } from './product';
+import { Product } from './product.model';
 
 @Pipe({
     name: 'productfilter',
@@ -14,10 +14,10 @@ export class ProductFilterPipe implements PipeTransform {
     // filter items array, items which match and return true will be kept, false will be filtered out
     return items.filter((item: Product) => this.applyFilter(item, filter));
   }
-  
+
   /**
    * Perform the filtering.
-   * 
+   *
    * @param {Product} product The product to compare to the filter.
    * @param {Product} filter The filter to apply.
    * @return {boolean} True if product satisfies filters, false if not.

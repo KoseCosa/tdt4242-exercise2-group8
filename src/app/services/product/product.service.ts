@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Product } from '../../models/product';
+import { Product } from '../../models/product.model';
 
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -24,6 +24,16 @@ export class ProductService {
 
   addProduct(product: Product): Observable<{success: boolean, msg: string}> {
     return this.http.post<{success: boolean, msg: string}>('/api/product/',
+      JSON.stringify(product),
+      {
+        headers: new HttpHeaders()
+          .set('Content-Type', 'application/json')
+      }
+    );
+  }
+
+  editProduct(product: Product): Observable<{success: boolean, msg: string}> {
+    return this.http.put<{success: boolean, msg: string}>('/api/product/' + product.id,
       JSON.stringify(product),
       {
         headers: new HttpHeaders()

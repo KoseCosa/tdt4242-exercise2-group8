@@ -12,12 +12,15 @@ import { ProductsComponent } from './components/products/products.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { AdminFrontpageComponent } from './components/admin-frontpage/admin-frontpage.component';
+import { AdminOrdersComponent } from './components/admin-orders/admin-orders.component';
 
 import { ProductService } from './services/product/product.service';
+import { OrderService } from './services/order/order.service';
 import { CartService } from './services/cart/cart.service';
 import { AuthService } from './services/auth/auth.service';
 import { ProductFilterPipe } from './models/product-filter.pipe';
-import { AdminFrontpageComponent } from './components/admin-frontpage/admin-frontpage.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,9 @@ import { AdminFrontpageComponent } from './components/admin-frontpage/admin-fron
     LoginComponent,
     RegisterComponent,
     ProductFilterPipe,
-    AdminFrontpageComponent
+    AdminFrontpageComponent,
+    AdminOrdersComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +46,8 @@ import { AdminFrontpageComponent } from './components/admin-frontpage/admin-fron
   providers: [
     ProductService,
     CartService,
-    AuthService],
+    AuthService,
+    OrderService],
   bootstrap: [AppComponent]
   ,
   exports: [ProductFilterPipe]

@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 import { CartService } from '../../services/cart/cart.service';
 import { ProductService } from '../../services/product/product.service';
+import { OrderService } from '../../services/order/order.service';
 
-import { Product } from '../../models/product';
+import { Product } from '../../models/product.model';
+import { Order } from '../../models/order.model';
 
 @Component({
   selector: 'app-cart',
@@ -13,7 +15,7 @@ import { Product } from '../../models/product';
 export class CartComponent implements OnInit {
   cart: Product[] = [];
 
-  constructor(private cartService: CartService, private productService: ProductService) { }
+  constructor(private cartService: CartService, private productService: ProductService, private orderService: OrderService) { }
 
   ngOnInit() {
     this.cart = this.cartService.getCart();
@@ -25,11 +27,11 @@ export class CartComponent implements OnInit {
 
   getTotal(product) {
     let amount = product.amount;
-    if (product.packageDeal!=null) {
+    if (product.packageDeal != null) {
       amount = Math.floor(amount / product.packageDeal.get) * product.packageDeal.pay
                   + amount % product.packageDeal.get;
     }
-    return product.price*(1-product.salePercentage)*amount
+    return product.price * (1 - product.salePercentage / 100) * amount;
   }
 
   getTotalSum() {
@@ -38,5 +40,14 @@ export class CartComponent implements OnInit {
       sum += this.getTotal(product);
     }
     return sum;
+  }
+
+  placeOrder() {
+    const order = new Order();
+    order.products = this.cart.map<[string, number]>(product => [product.id, product.amount]);
+    this.orderService.addOrder(order).subscribe(
+      data => console.log(data),
+      err => console.log(err)
+    );
   }
 }

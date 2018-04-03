@@ -52,18 +52,18 @@ router.post('/',auth.authenticate,auth.authorize, function(req,res){
 });
 
 router.put('/:id', auth.authenticate,auth.authorize, function(req,res){
-  const body = JSON.parse(req.body)
+  console.log("put detected");
   Product.findById(req.params.id, function(err, product){
     if (err){
       res.json({success: false, msg: err});
     }
     else {
-        product.name = body.name || product.name;
-        product.price = body.price || product.price;
-        product.category = body.category || product.category;
-        product.stock = body.stock || product.stock;
+        product.name = req.body.name || product.name;
+        product.price = req.body.price || product.price;
+        product.category = req.body.category || product.category;
+        product.stock = req.body.stock || product.stock;
         product.salePercentage = req.body.salePercentage || product.salePercentage;
-        product.getBy = body.getBy || product.getBy;
+        product.getBy = req.body.getBy || product.getBy;
         product.getBy = req.body.payFor || product.payFor;
         product.save(function(err){
         if (err){
