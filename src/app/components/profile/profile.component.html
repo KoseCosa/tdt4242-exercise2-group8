@@ -1,0 +1,21 @@
+<div style="display:flex;">
+  <div style="margin-right:auto">Order</div>
+  <div style="display:flex">
+    <div style="width: 100px; text-align: right;">Products</div>
+    <div style="width: 100px; text-align: right;">Status</div>
+  </div>
+</div>
+<hr>
+<div style="display:flex;" *ngFor="let order of orders">
+  <div style="margin-right:auto">
+    OrderID: {{ order.id }}<br>
+    Customer: {{ order.customer.username }}
+  </div>
+  <div style="width: 100px; text-align: right;">
+    {{order.products.length}}
+  </div>
+  <div style="width: 100px; text-align: right;">
+    {{order.status}}
+  </div>
+</div>
+<div *ngIf="orders.length < 1">No orders</div>

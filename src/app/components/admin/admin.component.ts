@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 // Import services
 import { ProductService } from '../../services/product/product.service';
 // Import Models
-import { Product } from '../../models/product';
+import { Product } from '../../models/product.model';
 
 @Component({
     selector: 'app-admin',

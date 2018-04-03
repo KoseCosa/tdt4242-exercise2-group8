@@ -11,7 +11,8 @@ export class Product {
       this.payFor = product.payFor || null;
     }
   }
-  id: number;
+  id: string;
+  amount: number;
   name: string;
   price: number;
   category: string;
