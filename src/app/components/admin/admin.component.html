@@ -20,52 +20,52 @@
 </div>
 
 <div class="container">
-  <div style="margin-right:auto">Products</div>
-  <div style="display:flex">
-    <div style="width: 100px; text-align: right;">Category</div>
-    <div style="width: 100px; text-align: right;">Stock</div>
-    <div style="width: 100px; text-align: right;">Price</div>
-    <div style="width: 100px; text-align: right;">Sale</div>
-    <div style="width: 100px; text-align: right;">Package Deal</div>
-    <div style="width: 100px; text-align: right;">Edit</div>
+  <div class="table">Products</div>
+  <div class="container">
+    <div class="table-list">Category</div>
+    <div class="table-list">Stock</div>
+    <div class="table-list">Price</div>
+    <div class="table-list">Sale</div>
+    <div class="table-list">Package Deal</div>
+    <div class="table-list">Edit</div>
   </div>
 </div>
 <hr>
-<div style="display:flex;" *ngFor="let product of products">
-  <div style="display:flex; width: 100%;" *ngIf="selectedProduct==product; else elseBlock">
-    <div style="margin-right:auto">
+<div class="container" *ngFor="let product of products">
+  <div id="style" *ngIf="selectedProduct==product; else elseBlock">
+    <div class="table">
       <input [(ngModel)]="selectedProduct.name" placeholder="name">
       <br>
       ProductID: {{ product.id }}
     </div>
-    <div style="width: 100px; text-align: right;"><input style="width: 90px;" [(ngModel)]="selectedProduct.category" placeholder="category"></div>
-    <div style="width: 100px; text-align: right;"><input style="width: 90px;" [(ngModel)]="selectedProduct.stock" placeholder="stock"></div>
-    <div style="width: 100px; text-align: right;"><input style="width: 90px;" [(ngModel)]="selectedProduct.price" placeholder="price"></div>
-    <div style="width: 100px; text-align: right;"><input style="width: 90px;" [(ngModel)]="selectedProduct.salePercentage" placeholder="sale"></div>
-    <div style="width: 100px; text-align: right;" *ngIf="product.packageDeal==null;  else showDeal">/</div>
+    <div class="table-list"><input class="list" [(ngModel)]="selectedProduct.category" placeholder="category"></div>
+    <div class="table-list"><input class="list" [(ngModel)]="selectedProduct.stock" placeholder="stock"></div>
+    <div class="table-list"><input class="list" [(ngModel)]="selectedProduct.price" placeholder="price"></div>
+    <div class="table-list"><input class="list" [(ngModel)]="selectedProduct.salePercentage" placeholder="sale"></div>
+    <div class="table-list" *ngIf="product.packageDeal==null;  else showDeal">/</div>
     <ng-template #showDeal>
-      <div style="width: 100px; text-align: right;">{{ product.packageDeal.get }} for {{ product.packageDeal.pay }} </div>
+      <div class="table-list">{{ product.packageDeal.get }} for {{ product.packageDeal.pay }} </div>
     </ng-template>
-    <div style="width: 100px; text-align: right;">
-      <span style="text-decoration: underline; cursor: pointer;" (click)="editProduct(); onSelect(null)">Done</span>
+    <div class="table-list">
+      <span class="button" (click)="editProduct(); onSelect(null)">Done</span>
     </div>
   </div>
   <ng-template #elseBlock>
-    <div style="margin-right:auto">
+    <div class="table">
       {{ product.name }}
       <br>
       ProductID: {{ product.id }}
     </div>
-    <div style="width: 100px; text-align: right;">{{ product.category }}</div>
-    <div style="width: 100px; text-align: right;">{{ product.stock }}</div>
-    <div style="width: 100px; text-align: right;">{{ product.price | number : '1.2-2'}}</div>
-    <div style="width: 100px; text-align: right;">{{ product.salePercentage }}%</div>
-    <div style="width: 100px; text-align: right;" *ngIf="product.packageDeal==null;  else showDeal">/</div>
+    <div class="table-list">{{ product.category }}</div>
+    <div class="table-list">{{ product.stock }}</div>
+    <div class="table-list">{{ product.price | number : '1.2-2'}}</div>
+    <div class="table-list">{{ product.salePercentage }}%</div>
+    <div class="table-list" *ngIf="product.packageDeal==null;  else showDeal">/</div>
     <ng-template #showDeal>
-      <div style="width: 100px; text-align: right;">{{ product.packageDeal.get }} for {{ product.packageDeal.pay }} </div>
+      <div class="table-list">{{ product.packageDeal.get }} for {{ product.packageDeal.pay }} </div>
     </ng-template>
-    <div style="width: 100px; text-align: right;">
-      <span style="text-decoration: underline; cursor: pointer;" (click)="onSelect(product)">Edit</span>
+    <div class="table-list">
+      <span class="button" (click)="onSelect(product)">Edit</span>
     </div>
   </ng-template>
 </div>
