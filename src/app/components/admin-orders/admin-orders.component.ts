@@ -26,7 +26,7 @@ export class AdminOrdersComponent implements OnInit {
 
   private getOrders() {
     this.orderService.getOrders().subscribe(
-      data => this.orders = data.orders.map(function(order: {_id: string, user: string, status: string}) {
+      data => this.orders = data.orders.map(function(order: {_id: string, user: string, status: string, products: [string, number][]}) {
         const newOrder = new Order();
         newOrder.id = order._id;
         newOrder.customer = order.user;
