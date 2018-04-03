@@ -31,6 +31,7 @@ export class AdminOrdersComponent implements OnInit {
         newOrder.id = order._id;
         newOrder.customer = order.user;
         newOrder.status = order.status;
+        newOrder.products = order.products;
         return newOrder;
       }),
       err => console.log(err)
