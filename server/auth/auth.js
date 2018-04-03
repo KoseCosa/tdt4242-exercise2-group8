@@ -34,8 +34,9 @@ exports.logout = function(req, res){
 }
 
 exports.authenticate = function(req, res, next){
-  if (req.isAuthenticated())
+  if (req.isAuthenticated()) {
     return next();
+  };
   res.json({ success: false, message: "User is not logged in" });
 }
 
