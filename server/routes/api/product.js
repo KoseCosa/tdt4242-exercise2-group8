@@ -8,7 +8,6 @@ const router = express.Router();
 router.use(bodyParser.json());
 
 router.get('/', function(req,res){
-  // TODO: Implement Search if needed
   Product.find(function(err, products){
     if (err){
       res.json({success: false, msg: err});
@@ -31,7 +30,6 @@ router.get('/:id', function(req,res){
 });
 
 router.post('/',auth.authenticate,auth.authorize, function(req,res){
-  console.log(req.body);
   let product = new Product();
   product.name = req.body.name || product.name;
   product.price = req.body.price || product.price;
