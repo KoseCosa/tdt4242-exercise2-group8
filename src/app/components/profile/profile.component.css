@@ -1,0 +1,12 @@
+.container{
+    display:flex;
+}
+
+.orders{
+    width: 100px; 
+    text-align: right;
+}
+
+#order{
+    margin-right:auto;
+}

@@ -1,7 +1,20 @@
 .navbar {
   background-color: #e24e42;
+  display: flex; 
+  padding: 15px;
 }
 
+.container{
+  display: flex; 
+}
+
+.nav{
+  margin-left: 15px;
+}
+
+#nav{
+  margin-right: auto;
+}
 .nav-button {
   color: #f4f4f4;
   cursor: pointer;

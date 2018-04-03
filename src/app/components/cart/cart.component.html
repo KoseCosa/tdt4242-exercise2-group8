@@ -1,38 +1,38 @@
-<div style="width: auto;">
-  <div style="display:flex;">
-    <div style="margin-right:auto">Product</div>
-    <div style="display:flex">
-      <div style="width: 100px; text-align: right;">Amount</div>
-      <div style="width: 100px; text-align: right;">Price</div>
-      <div style="width: 100px; text-align: right;">Sale</div>
-      <div style="width: 100px; text-align: right;">Package Deal</div>
-      <div style="width: 100px; text-align: right;">Total</div>
-      <div style="width: 100px; text-align: right;">Delete</div>
+<div id="cart">
+  <div class ="container">
+    <div id="title">Products</div>
+    <div class ="container">
+      <div class ="table">Amount</div>
+      <div class ="table">Price</div>
+      <div class ="table">Sale</div>
+      <div class ="table">Package Deal</div>
+      <div class ="table">Total</div>
+      <div class ="table">Delete</div>
     </div>
   </div>
   <hr>
-  <div style="display:flex;" *ngFor="let product of cart">
+  <div class ="container" *ngFor="let product of cart">
     <div style="margin-right:auto">
       {{ product.name }} - {{ product.category }}
       <br>
       ProductID: {{ product.id }} Stock: {{ product.stock }}
     </div>
-    <div style="width: 100px; text-align: right;">{{ product.amount }}</div>
-    <div style="width: 100px; text-align: right;">{{ product.price | number : '1.2-2'}}</div>
-    <div style="width: 100px; text-align: right;">{{ product.salePercentage }}%</div>
-    <div style="width: 100px; text-align: right;" *ngIf="product.packageDeal==null;  else showDeal">/</div>
+    <div class ="table">{{ product.amount }}</div>
+    <div class ="table">{{ product.price | number : '1.2-2'}}</div>
+    <div class ="table">{{ product.salePercentage }}%</div>
+    <div class ="table" *ngIf="product.packageDeal==null;  else showDeal">/</div>
     <ng-template #showDeal>
-      <div style="width: 100px; text-align: right;">{{ product.packageDeal.get }} for {{ product.packageDeal.pay }} </div>
+      <div class ="table">{{ product.packageDeal.get }} for {{ product.packageDeal.pay }} </div>
     </ng-template>
 
-    <div style="width: 100px; text-align: right;">{{ getTotal(product) | number : '1.2-2'}}</div>
-    <div style="width: 100px; text-align: right;" ><span style="text-decoration: underline; cursor: pointer;" (click)="removeProduct(product)">Delete</span></div>
+    <div class ="table">{{ getTotal(product) | number : '1.2-2'}}</div>
+    <div class ="table"><span style="text-decoration: underline; cursor: pointer;" (click)="removeProduct(product)">Delete</span></div>
   </div>
   <div *ngIf="cart.length < 1">No products in cart</div>
   <hr>
-  <div style="display:flex;">
-    <div style="margin-left:auto">Total Sum: {{ getTotalSum() | number : '1.2-2' }}</div>
+  <div class="container">
+    <div id="sum">Total Sum: {{ getTotalSum() | number : '1.2-2' }}</div>
   </div>
   <hr>
-  <div style="text-align: right;" ><span style="text-decoration: underline; cursor: pointer;" (click)="placeOrder()">Buy</span></div>
+  <div style="text-align: right;" ><span style="text-decoration: underline; cursor: pointer;">Buy</span></div>
 </div>
