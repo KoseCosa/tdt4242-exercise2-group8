@@ -5,6 +5,7 @@ import { CartComponent } from './cart.component';
 
 import { CartService } from '../../services/cart/cart.service';
 import { ProductService } from '../../services/product/product.service';
+import { OrderService } from '../../services/order/order.service';
 
 describe('CartComponent', () => {
   let component: CartComponent;
@@ -14,7 +15,7 @@ describe('CartComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ CartComponent ],
       imports: [ HttpClientTestingModule ],
-      providers: [ CartService, ProductService ]
+      providers: [ OrderService, CartService, ProductService ]
     })
     .compileComponents();
   }));
