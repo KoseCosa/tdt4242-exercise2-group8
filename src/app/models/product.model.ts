@@ -2,6 +2,7 @@ export class Product {
   constructor(product: any = null) {
     if (product) {
       this.id = product._id || null;
+      this.amount = 1;
       this.name = product.name || null;
       this.price = product.price || null;
       this.category = product.category || null;
